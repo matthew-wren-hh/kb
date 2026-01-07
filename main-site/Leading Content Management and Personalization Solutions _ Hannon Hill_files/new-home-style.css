@@ -1,0 +1,215 @@
+.banner-section h1 {
+    font-size: 3.625rem;
+    font-weight: 600;
+    margin-bottom: 1.563rem;
+}
+.main-heading-color {
+    color: #333D48;
+}
+
+.banner-section .banner-subtext {
+    font-size: 1.625rem;
+    font-weight: 600;
+    margin-bottom: 1.563rem;
+}
+
+.banner-bulletspoints-column {
+    gap: 10px;
+}
+
+.px-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.py-5 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+.banner-bulletspoints span {
+    margin-bottom: 0px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.trusted-section img {
+    opacity: 1;
+    filter: grayscale(0%);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.trusted-section p {
+    transition: 0.5s;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.benefit-section {
+    padding: 150px 0px 250px;
+    background-color: #E2E9E9;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.benefit-section h2 {
+    font-size: 3rem !important;
+    line-height: 58px !important;
+}
+
+.benefit-section p {
+    font-size: 1.25rem;
+    padding-bottom: 0.813rem;
+    margin: 0px;
+    /*width: 67%;*/
+    line-height: 1.5em;
+}
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.benefit-section h4 {
+    font-size: 1.563rem;
+    line-height: 35px;
+    /*width: 67%;*/
+    margin: 0px;
+}
+
+img.institution-section-img {
+    margin-top: -23%;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.institution-section-container {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    padding: 55px 0px;
+}
+
+.content-manage-body {
+    background-color: #352440;
+    padding: 2.5rem 3.375rem;
+    border-radius: 1.875rem;
+    margin-top: 40px;
+}
+
+.content-manage-body h2 {
+    /*color: white !important;*/
+}
+
+.statistics-section h3 {
+    font-size: 3.125rem;
+}
+
+.content-manage-section {
+    background-color: #26333e;
+    padding: 150px 0px;
+}
+
+.content-manage-section h2 {
+    font-size: 3.438rem;
+    font-weight: 600;
+    padding-bottom: 24px;
+    /*color: white !important;*/
+}
+
+.content-manage-section h3 {
+    font-size: 1.25rem;
+    width: 60%;
+    margin: 0 auto;
+    line-height: 32px;
+    font-weight: 400;
+    /*color: white !important;*/
+}
+
+.content-manage-section .feature-card {
+    background-color: transparent;
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 64px 43px;
+    transition: 0.5s;
+    height: 291px;
+    border: 2px solid #E41961;
+}
+
+.content-manage-section .feature-card p {
+    font-size: 1.25rem;
+}
+
+.custom-section h2 {
+    color: white !important;
+}
+
+.g-4, .gy-4 {
+    --bs-gutter-y: 1.5rem !important;
+}
+
+.g-4, .gx-4 {
+    --bs-gutter-x: 1.5rem !important;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)* .5);
+    padding-left: calc(var(--bs-gutter-x)* .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.d-flex {
+    display: flex !important
+;
+}
+
+.content-manage-section .feature-card {
+    background-color: transparent;
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 64px 43px;
+    transition: 0.5s;
+    height: 291px;
+    border: 2px solid #E41961;
+}
+
+.content-manage-section .feature-card:hover {
+    background-color: #E41961;
+    transition: 0.5s;
+}
+
+.pressure-section {
+    padding: 140px 0px 0px;
+}
+
+.pressure-section h2 {
+    font-size: 2.813rem;
+    color: #333D48;
+}
+
+.pressure-section p {
+    font-size: 1.375rem;
+    color: #333D48;
+}
+
+.main-btn {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 14px 41px !important;
+    border-radius: 15px !important;
+    transition: 0.5s !important;
+}
+
+.content {
+    padding: 10px 20px;
+}
+
+.industry-insights {
+    padding-top: 150px;
+}
+
+.banner-section {
+    z-index: -1;
+}

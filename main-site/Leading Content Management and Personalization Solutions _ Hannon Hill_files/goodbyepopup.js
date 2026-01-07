@@ -1,0 +1,14 @@
+(function(global,factory){typeof exports==='object'&&typeof module!=='undefined'?factory(exports):typeof define==='function'&&define.amd?define(['exports'],factory):(global=typeof globalThis!=='undefined'?globalThis:global||self,factory(global.GoodbyePopup={}));}(this,(function(exports){'use strict';var ACTIVE_CLASSNAME='_active';function GoodbyePopup(config){this.config=config||{};this.isActive=false;this.wrapper=document.querySelector(this.config.selector||'[data-goodbye-popup]');this.open=this.open.bind(this);this.close=this.close.bind(this);this.onMouseLeave=this.onMouseLeave.bind(this);this.onMouseEnter=this.onMouseEnter.bind(this);this.onKeyPress=this.onKeyPress.bind(this);this.hideWrapper();document.addEventListener('mouseleave',this.onMouseLeave);document.addEventListener('mouseenter',this.onMouseEnter);}
+GoodbyePopup.prototype.onMouseLeave=function onMouseLeave(){this.leaveTimeout=setTimeout(()=>{document.removeEventListener('mouseleave',this.onMouseLeave);this.open();},300);}
+GoodbyePopup.prototype.onMouseEnter=function onMouseEnter(){clearTimeout(this.leaveTimeout);}
+GoodbyePopup.prototype.hideWrapper=function hideWrapper(){if(this.wrapper){this.wrapper.setAttribute('hidden','');this.wrapper.style.display='none';}}
+GoodbyePopup.prototype.onKeyPress=function onKeyPress(e){if(e.key==='Escape'){this.close();}}
+GoodbyePopup.prototype.open=function open(){if(this.isActive)return;this.isActive=true;if(this.wrapper){this.wrapper.removeAttribute('hidden');this.wrapper.style.display='block';setTimeout(()=>{this.wrapper.classList.add(ACTIVE_CLASSNAME);},20);}
+this.closeButtons=this.wrapper.querySelectorAll(this.config.closeSelector||'[data-goodbye-popup-close]');if(this.closeButtons.length){var self=this;Array.prototype.forEach.call(this.closeButtons,function(item){console.log(item);item.addEventListener('click',self.close);});}
+document.addEventListener('keydown',this.onKeyPress);}
+GoodbyePopup.prototype.close=function close(){if(!this.isActive)return;this.isActive=false;var self=this;function onTransitionend(){self.hideWrapper();self.wrapper.removeEventListener('transitionend',onTransitionend);}
+if(this.wrapper){this.wrapper.addEventListener('transitionend',onTransitionend);this.wrapper.classList.remove(ACTIVE_CLASSNAME);setTimeout(()=>{this.hideWrapper();},500);}
+if(this.closeButtons.length){Array.prototype.forEach.call(this.closeButtons,function(item){console.log(item);item.removeEventListener('click',self.close);});}
+document.removeEventListener('keypress',this.onKeyPress);}
+var goodbyePopup;function init(config){if(goodbyePopup)return;goodbyePopup=new GoodbyePopup(config);}
+exports.init=init;Object.defineProperty(exports,'__esModule',{value:true});})));
