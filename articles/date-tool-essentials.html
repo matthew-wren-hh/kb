@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/date-tool-essentials.html -->
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    lang="en"
+    style="--scroll-margin-top: 74px">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>Date tool essentials - Cascade CMS Knowledge Base</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <link
+            href="../assets/img/apple-touch-icon-57x57.png"
+            name="favicon"
+            rel="shortcut icon"
+            type="image/png" />
+
+        <link href="../assets/css/custom.css" rel="stylesheet" />
+        <link href="../assets/css/prettify.css" rel="stylesheet" />
+        <link href="../assets/css/prism.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/fontawesome-all.css" rel="stylesheet" />
+
+        <!-- Preload Font Awesome fonts -->
+        <link
+            as="font"
+            crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.woff2"
+            rel="preload"
+            type="font/woff2" />
+        <link
+            as="font"
+            crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-brands-400.woff2"
+            rel="preload"
+            type="font/woff2" />
+
+        <!-- Conditional comment for IE 7 -->
+        <!--[if IE 7]>
+            <link
+                rel="stylesheet"
+                href="/_files/lib/bootstrap/font-awesome-ie7.css" />
+        <![endif]-->
+
+        <script
+            type="text/javascript"
+            src="https://ssl.spectate.com/s.js"></script>
+        <script type="text/javascript" src="../assets/js/pd.js"></script>
+        <script async="" src="../assets/js/gtm.js"></script>
+        <script
+            src="../assets/js/jquery.min.js"
+            type="text/javascript"></script>
+
+        <!-- Google Tag Manager -->
+
+        <script>
+            dataLayer = [];
+        </script>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-WQQX65");
+        </script>
+
+        <!-- End Google Tag Manager -->
+
+        <script src="../assets/js/clipboard.min.js"></script>
+        <script src="../assets/js/prettify.js" type="text/javascript"></script>
+        <script src="../assets/js/lang-css.js" type="text/javascript"></script>
+        <script src="../assets/js/lang-sql.js" type="text/javascript"></script>
+        <script src="../assets/js/lang-yaml.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                prettyPrint();
+            });
+        </script>
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link
+            href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/date-tool-essentials.html"
+            rel="canonical" />
+        <meta content="9290e3bac0a8002b3249e88a9b8fb375" name="id" />
+    </head>
+    <body>
+        <a class="sr-only sr-only-focusable" href="#main-content"
+            >Skip to main content</a
+        >
+        <a class="sr-only sr-only-focusable" href="#sidebar"
+            >Skip to sidebar / page navigation</a
+        >
+        <!-- Google Tag Manager (noscript) --><noscript
+            ><iframe
+                height="0"
+                src="https://www.googletagmanager.com/ns.html?id=GTM-WQQX65"
+                style="display: none; visibility: hidden"
+                width="0"></iframe></noscript
+        ><!-- End Google Tag Manager (noscript) -->
+
+        <nav aria-labelledby="navbar-brand" class="topbar">
+            <div class="container topbar-inner">
+                <a
+                    class="brand"
+                    href="https://www.hannonhill.com/cascadecms/latest/index.html"
+                    id="navbar-brand"
+                    name="brand">
+                    <img
+                        alt="Cascade CMS Logo"
+                        src="../assets/img/kb-logo-new.png" />
+                </a>
+                <ul class="topbar-links">
+                    <li>
+                        <a
+                            href="https://www.hannonhill.com/cascadecms/latest/releases/index.html"
+                            >Release Notes</a
+                        >
+                    </li>
+                    <li>
+                        <a href="https://help.hannonhill.com/hc/en-us"
+                            >Support</a
+                        >
+                    </li>
+                </ul>
+                <form class="search-bar" id="search-form-top" role="search">
+                    <div class="search-box">
+                        <input
+                            aria-label="Search"
+                            autocomplete="off"
+                            class="search-input"
+                            id="searchBox"
+                            name="q"
+                            placeholder="Search..."
+                            type="search" />
+                        <a
+                            class="search-btn"
+                            href="#"
+                            id="voice-parent"
+                            type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="content-wrapper">
+                <nav class="breadcrumbs" aria-label="breadcrumb">
+                    <ol>
+                        <li>
+                            <a
+                                href="https://www.hannonhill.com/cascadecms/latest/index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/index.html">
+                                Developing in Cascade
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/index.html">
+                                Formats
+                            </a>
+                        </li>
+                        <li aria-current="page">Date tool essentials</li>
+                    </ol>
+                </nav>
+                <div class="layout">
+                    <aside class="sidebar">
+                        <details class="side-nav" open>
+                            <summary>
+                                Sections
+                                <span aria-hidden="true">▾</span>
+                            </summary>
+                            <nav id="sidebar">
+                                <ul>
+                                    <li>
+                                        <a
+                                            aria-label="Section Topic"
+                                            href="date-tool-essentialls.html"
+                                            >Date tool essentials</a
+                                        >
+                                        <ul>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to Overview"
+                                                    href="#DateToolOverview"
+                                                    >Overview</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to getDate vs toDate"
+                                                    href="#GetDateVsToDate"
+                                                    >getDate vs toDate</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to getCalendar basics"
+                                                    href="#GetCalendarBasics"
+                                                    >getCalendar basics</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to Using difference"
+                                                    href="#DifferenceUsage"
+                                                    >Using difference</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to whenIs basics"
+                                                    href="#WhenIsBasics"
+                                                    >whenIs basics</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to Formatting output"
+                                                    href="#FormattingOutput"
+                                                    >Formatting output</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to Sorting by date"
+                                                    href="#SortingByDate"
+                                                    >Sorting by date</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    aria-label="Skip to Date tool tips"
+                                                    href="#DateToolTips"
+                                                    >Date tool tips</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/index.html"
+                                            >Developing in Cascade</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/velocity-tools.html"
+                                            >Velocity Tools</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://github.com/hannonhill/Velocity-Cookbook"
+                                            ><i class="fas fa-external-link-alt"
+                                                >&nbsp;</i
+                                            >
+                                            Cascade CMS Velocity Examples</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="date-tool-essentialls.html"
+                                            >Date tool essentials</a
+                                        >
+                                    </li>
+                                </ul>
+                            </nav>
+                        </details>
+                    </aside>
+                    <main id="main-content" role="main">
+                        <div class="page-shell">
+                            <div class="content width">
+                                <div class="icon-wrapper">
+                                    <i
+                                        class="fa-solid col-visible-md fa-up-right-and-down-left-from-center"
+                                        id="iconToggle"
+                                        onclick="toggleWidthAndIcon()"></i>
+                                </div>
+                                <div class="flex">
+                                    <span class="badge badge-danger"
+                                        >Velocity Tools</span
+                                    >
+                                </div>
+                                <header>
+                                    <h1>Date tool essentials</h1>
+                                </header>
+                                <a name="Date+tool+essentials"></a>
+
+                                <section
+                                    aria-label="Overview"
+                                    class="anchor-heading"
+                                    id="DateToolOverview">
+                                    <h2>
+                                        Overview
+                                        <a
+                                            aria-label="Skip to Overview"
+                                            href="#DateToolOverview"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        The Date Tool lets you retrieve, parse,
+                                        format, and compare date/time values in
+                                        Velocity. It is especially useful when
+                                        you are working with Unix timestamps in
+                                        milliseconds (such as Index Block XML
+                                        values) or when you need to format
+                                        human-readable dates for display.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            Convert Unix timestamps in
+                                            milliseconds to Java Dates.
+                                        </li>
+                                        <li>
+                                            Parse formatted strings into Dates
+                                            with <code>toDate()</code>.
+                                        </li>
+                                        <li>
+                                            Format Dates for display with
+                                            <code>format()</code>.
+                                        </li>
+                                        <li>
+                                            Compare two dates using
+                                            <code>difference()</code>.
+                                        </li>
+                                    </ul>
+                                </section>
+
+                                <section
+                                    aria-label="getDate vs toDate"
+                                    class="anchor-heading"
+                                    id="GetDateVsToDate">
+                                    <h2>
+                                        getDate vs toDate
+                                        <a
+                                            aria-label="Skip to getDate vs toDate"
+                                            href="#GetDateVsToDate"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        Use <code>.getDate()</code> when you
+                                        already have a Unix timestamp in
+                                        milliseconds (for example, from system
+                                        fields like
+                                        <code>last-published-on</code>) and need
+                                        a Java Date for formatting or
+                                        comparison.
+                                    </p>
+                                    <p>
+                                        If your input is a human-readable date
+                                        string (like <code>03-21-2024</code>),
+                                        use <code>.toDate()</code> instead.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">$_DateTool.getDate()
+
+#set ($pubDate = $currentPage.lastPublishedOn)
+$_DateTool.getDate($pubDate)</code></pre>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($dateString = "03-21-2024")
+#set ($date = $_DateTool.toDate("MM-dd-yyyy", $dateString))
+$_DateTool.format("MMMM d, yyyy", $date)</code></pre>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">## Shorthand numeric format
+#set ($shipDateString = "2024-07-05")
+#set ($shipDate = $_DateTool.toDate("yyyy-MM-dd", $shipDateString))
+$_DateTool.format("MMM d, yyyy", $shipDate)</code></pre>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">## Specific timestamp format with time
+#set ($stamp = "2024-07-05 14:30:00")
+#set ($stampDate = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+$_DateTool.format("EEEE, MMM d 'at' h:mma", $stampDate)</code></pre>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">## Unix milliseconds to display
+#set ($ms = 1719878400000)
+#set ($launchDate = $_DateTool.getDate($ms))
+$_DateTool.format("yyyyMMdd", $launchDate)</code></pre>
+                                    <table>
+                                        <caption>
+                                            Quick compare: getDate vs toDate.
+                                        </caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Method</th>
+                                                <th scope="col">Input</th>
+                                                <th scope="col">When to use</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <code
+                                                        >$_DateTool.getDate</code
+                                                    >
+                                                </td>
+                                                <td>
+                                                    Unix timestamp in
+                                                    milliseconds
+                                                </td>
+                                                <td>
+                                                    Convert a numeric timestamp
+                                                    to a Date for formatting or
+                                                    comparison.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <code
+                                                        >$_DateTool.toDate</code
+                                                    >
+                                                </td>
+                                                <td>
+                                                    Formatted date string +
+                                                    pattern
+                                                </td>
+                                                <td>
+                                                    Parse a human-readable date
+                                                    string into a Date.
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>
+                                        <strong>Pitfall</strong> -
+                                        <code>getDate()</code> expects
+                                        milliseconds. If you pass seconds, your
+                                        date will land near 1970.
+                                    </p>
+                                </section>
+
+                                <section
+                                    aria-label="getCalendar basics"
+                                    class="anchor-heading"
+                                    id="GetCalendarBasics">
+                                    <h2>
+                                        getCalendar basics
+                                        <a
+                                            aria-label="Skip to getCalendar basics"
+                                            href="#GetCalendarBasics"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        <code>getCalendar()</code> returns a
+                                        Java <code>Calendar</code>. Use it when
+                                        you need parts of a date (month, day,
+                                        weekday) or you need to add/subtract
+                                        time in a precise way.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($cal = $_DateTool.getCalendar())
+$cal.get($cal.YEAR)
+## Example output: 2024
+$cal.get($cal.MONTH) ## zero-based
+## Example output: 6
+$cal.get($cal.DAY_OF_MONTH)
+## Example output: 5</code></pre>
+                                    <p>
+                                        You can also set the calendar to a
+                                        specific date and add time:
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($cal = $_DateTool.getCalendar())
+$cal.setTime($_DateTool.getDate($pubDate))
+$cal.add($cal.DATE, 7) ## add 7 days
+$_DateTool.format("MMMM d, yyyy", $cal.getTime())
+## Example output: July 12, 2024</code></pre>
+                                </section>
+
+                                <section
+                                    aria-label="Using difference"
+                                    class="anchor-heading"
+                                    id="DifferenceUsage">
+                                    <h2>
+                                        Using difference
+                                        <a
+                                            aria-label="Skip to Using difference"
+                                            href="#DifferenceUsage"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        <code>difference()</code> returns a
+                                        Comparison object. When you print it, it
+                                        renders a human-readable value (like
+                                        <code>-2 weeks</code>), which is handy
+                                        for relative-time labels.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($pubDate = $currentPage.lastPublishedOn)
+#set ($diff = $_DateTool.difference($_DateTool.getDate(), $pubDate))
+Updated $diff</code></pre>
+                                    <p>
+                                        You can also use the Comparison values
+                                        to drive logic. The Comparison exposes
+                                        time units (years, months, days, hours,
+                                        minutes, seconds) and a direction, so
+                                        you can branch based on thresholds.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($eventDate = $_DateTool.getDate($eventStartMs))
+#set ($diff = $_DateTool.difference($_DateTool.getDate(), $eventDate))
+#if ($diff.getDays() >= 7)
+  Starts in more than a week
+#else
+  Starts soon ($diff)
+#end</code></pre>
+                                </section>
+
+                                <section
+                                    aria-label="whenIs basics"
+                                    class="anchor-heading"
+                                    id="WhenIsBasics">
+                                    <h2>
+                                        whenIs basics
+                                        <a
+                                            aria-label="Skip to whenIs basics"
+                                            href="#WhenIsBasics"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        <code>whenIs()</code> produces a
+                                        human-readable time span between two
+                                        dates. It is useful for user-facing
+                                        labels like “3 days ago” or “in 2
+                                        hours.”
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($pubDate = $_DateTool.getDate($currentPage.lastPublishedOn))
+$_DateTool.whenIs($pubDate)</code></pre>
+                                    <p>
+                                        You can also compare two explicit dates
+                                        to control the wording:
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($now = $_DateTool.getDate())
+#set ($launch = $_DateTool.toDate("yyyy-MM-dd", "2024-07-05"))
+$_DateTool.whenIs($now, $launch)</code></pre>
+                                    <p>
+                                        <strong>Tip</strong> - For consistent
+                                        phrasing across the site, use
+                                        <code>whenIs()</code> for labels and
+                                        <code>format()</code> for exact date
+                                        strings.
+                                    </p>
+                                </section>
+
+                                <section
+                                    aria-label="Formatting output"
+                                    class="anchor-heading"
+                                    id="FormattingOutput">
+                                    <h2>
+                                        Formatting output
+                                        <a
+                                            aria-label="Skip to Formatting output"
+                                            href="#FormattingOutput"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        Use <code>format()</code> to display a
+                                        Date in a predefined or custom pattern.
+                                        Predefined formats (like
+                                        <code>short</code>, <code>medium</code>,
+                                        or <code>long</code>) are quick, while
+                                        custom patterns give full control.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">$_DateTool.format("medium", $date)
+$_DateTool.format("EEEE MM/dd/yy", $date)</code></pre>
+                                    <p>
+                                        <strong>Tip</strong> - If you are
+                                        parsing a string and then formatting it,
+                                        always use the same source time zone for
+                                        both steps to avoid shifts.
+                                    </p>
+                                </section>
+
+                                <section
+                                    aria-label="Sorting by date"
+                                    class="anchor-heading"
+                                    id="SortingByDate">
+                                    <h2>
+                                        Sorting by date
+                                        <a
+                                            aria-label="Skip to Sorting by date"
+                                            href="#SortingByDate"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <p>
+                                        Sort by numeric timestamps or ISO-style
+                                        strings, not by formatted display
+                                        strings. If you store date values as
+                                        Unix milliseconds, you can use the Sort
+                                        Tool with <code>dataType</code> set to
+                                        <code>"number"</code>.
+                                    </p>
+                                    <p>
+                                        <strong
+                                            >addSortCriterion() expects
+                                            XPath</strong
+                                        >
+                                        - use it when your list items are XML
+                                        nodes (Index Block XML or structured
+                                        data nodes). The XPath should be
+                                        relative to each item in the list.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($rows = $currentPage.getStructuredDataNodes("event"))
+$_SortTool.addSortCriterion("child(startDateMs).value", "en", "number", "ascending", "lower-first")
+#set ($rows = $_SortTool.sort($rows))</code></pre>
+                                    <p>
+                                        <strong
+                                            >API lists use property
+                                            paths</strong
+                                        >
+                                        - when your list comes from the Cascade
+                                        API (e.g., <code>$_.query()</code>), use
+                                        the quick form
+                                        <code>sort($list, "property")</code>
+                                        with a property path like
+                                        <code
+                                            >structuredDataNode(...).textValue</code
+                                        >
+                                        or
+                                        <code
+                                            >metadata.dynamicField(...).value</code
+                                        >. This is different from XPath.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($events = $_.query().byContentType("event").execute())
+#set ($events = $_SortTool.sort($events, "structuredDataNode(startDateMs).textValue:desc"))</code></pre>
+                                    <p>
+                                        <strong>Tip</strong> - If you are unsure
+                                        which property path to use for API
+                                        assets, output one item with
+                                        <code
+                                            >$_PropertyTool.outputProperties($item)</code
+                                        >
+                                        to inspect the available fields.
+                                    </p>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($events = $_.query().byContentType("event").execute())
+$_SortTool.addSortCriterion("structuredDataNode(startDateMs).textValue", "en", "number", "ascending", "lower-first")
+#set ($events = $_SortTool.sort($events))</code></pre>
+                                    <p>
+                                        If you only have date strings, normalize
+                                        them to an ISO format (like
+                                        <code>yyyy-MM-dd</code> or
+                                        <code>yyyyMMddHHmmss</code>) before
+                                        sorting so text ordering matches
+                                        chronological ordering.
+                                    </p>
+                                </section>
+
+                                <section
+                                    aria-label="Date tool tips"
+                                    class="anchor-heading"
+                                    id="DateToolTips">
+                                    <h2>
+                                        Date tool tips
+                                        <a
+                                            aria-label="Skip to Date tool tips"
+                                            href="#DateToolTips"
+                                            ><i
+                                                class="fas fa-link icon-anchor-link"></i
+                                        ></a>
+                                    </h2>
+                                    <ul>
+                                        <li>
+                                            <strong
+                                                >Milliseconds vs seconds</strong
+                                            >
+                                            - <code>getDate()</code> expects
+                                            milliseconds.
+                                        </li>
+                                        <li>
+                                            <strong>Pattern must match</strong>
+                                            - <code>toDate()</code> will fail if
+                                            the format pattern does not match
+                                            the input string.
+                                        </li>
+                                        <li>
+                                            <strong>Time zones</strong> - Output
+                                            uses the server time zone unless you
+                                            explicitly adjust it.
+                                        </li>
+                                        <li>
+                                            <strong>Comparisons</strong> - Use
+                                            <code>difference()</code> to show
+                                            relative time spans.
+                                        </li>
+                                    </ul>
+                                    <pre
+                                        tabindex="0"
+                                        style="overflow: auto"
+                                        class="language-velocity"><button class="btn-copy" aria-label="Copy code" data-original-html="&lt;i class=&quot;fa-regular fa-copy&quot;&gt;&lt;/i&gt;" style="width: 34px;"><i class="fa-regular fa-copy"></i></button><code class="language-velocity">#set ($pubDate = $currentPage.lastPublishedOn)
+$_DateTool.difference($_DateTool.getDate(), $pubDate)</code></pre>
+                                </section>
+                                <a
+                                    aria-label="Back to top"
+                                    class="scroll-container is-visible"
+                                    href="#main-content">
+                                    <span class="scroll-container__icon"
+                                        >↑</span
+                                    >
+                                </a>
+                            </div>
+                        </div>
+
+                        <script>
+                            function toggleWidthAndIcon() {
+                                var element = document.getElementById("expand");
+                                var icon =
+                                    document.getElementById("iconToggle");
+
+                                // Check if the content is currently full width
+                                if (element.classList.contains("width-full")) {
+                                    // If yes, switch to "width" and update the icon to "expand"
+                                    element.classList.remove("width-full");
+                                    element.classList.add("width");
+                                    icon.classList.remove(
+                                        "fa-down-left-and-up-right-to-center"
+                                    );
+                                    icon.classList.add(
+                                        "fa-up-right-and-down-left-from-center"
+                                    );
+                                } else {
+                                    // If not, switch to "width-full" and update the icon to "un-expand"
+                                    element.classList.remove("width");
+                                    element.classList.add("width-full");
+                                    icon.classList.remove(
+                                        "fa-up-right-and-down-left-from-center"
+                                    );
+                                    icon.classList.add(
+                                        "fa-down-left-and-up-right-to-center"
+                                    );
+                                }
+                            }
+                        </script>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-wrapper">
+                <hr />
+                <div class="footer-container">
+                    <div class="footer-left">
+                        <img
+                            alt="cascade cms icon"
+                            class="footer-logo"
+                            src="../assets/img/apple-touch-icon-57x57.png" />
+
+                        <p class="" id="site-copyright">
+                            All content
+                            <a
+                                aria-hidden="true"
+                                class="quickedit"
+                                href="https://hannonhill.cascadecms.com/entity/open.act?id=9290e3bac0a8002b3249e88a9b8fb375&amp;type=page"
+                                tabindex="-1"
+                                target="_blank"
+                                >©</a
+                            >
+                            2026
+                            <a href="https://www.hannonhill.com/index.html"
+                                >Hannon Hill</a
+                            >
+                        </p>
+                    </div>
+                    <div class="footer-right">
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.hannonhill.com/about-us/about-hannon-hill.html"
+                                    >About us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.hannonhill.com/about-us/join-our-team/index.html"
+                                    >Careers</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.hannonhill.com/documents/index.html"
+                                    >Compliance</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.hannonhill.com/resources/index.html"
+                                    >Resources</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://portal.productboard.com/gp4tteft4txh4nde2tnnnybl"
+                                    >Idea Portal</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.hannonhill.com/cascadecms/latest/sitemap.html"
+                                    >Site Index</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/hannonhill"
+                                    >Github</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="../assets/js/prism.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            piAId = "1002";
+            piCId = "1003";
+
+            (function () {
+                function async_load() {
+                    var s = document.createElement("script");
+                    s.type = "text/javascript";
+                    s.src =
+                        ("https:" == document.location.protocol
+                            ? "https://pi"
+                            : "http://cdn") + ".pardot.com/pd.js";
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(s, c);
+                }
+                if (window.attachEvent) {
+                    window.attachEvent("onload", async_load);
+                } else {
+                    window.addEventListener("load", async_load, false);
+                }
+            })();
+        </script>
+        <script type="text/javascript">
+            sAId = "1";
+            sCId = "4";
+
+            (function () {
+                function async_load() {
+                    var s = document.createElement("script");
+                    s.type = "text/javascript";
+                    s.src =
+                        ("https:" == document.location.protocol
+                            ? "https://ssl"
+                            : "http://cdn") + ".spectate.com/s.js";
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(s, c);
+                }
+                if (window.attachEvent) {
+                    window.attachEvent("onload", async_load);
+                } else {
+                    window.addEventListener("load", async_load, false);
+                }
+            })();
+        </script>
+
+        <script async="true" src="../assets/js/12"></script>
+
+        <scribe-shadow
+            id="crxjs-ext"
+            data-crx="okfkdaglfjjjfefdcppliegebpoegaii"
+            style="
+                position: fixed;
+                width: 0px;
+                height: 0px;
+                top: 0px;
+                left: 0px;
+                z-index: 2147483647;
+                overflow: visible;
+                visibility: visible;
+            "
+            ><template shadowrootmode="open"
+                ><div
+                    id="root-scribe-elem"
+                    style="
+                        position: fixed;
+                        width: 0px;
+                        height: 0px;
+                        top: 0px;
+                        left: 0px;
+                        overflow: visible;
+                        color: rgb(21, 24, 30);
+                    ">
+                    <div
+                        role="region"
+                        aria-label="Notifications (F8)"
+                        tabindex="-1"
+                        style="pointer-events: none">
+                        <ol
+                            tabindex="-1"
+                            class="fixed bottom-auto right-0 top-0 z-[999999] flex max-h-screen w-[400px] max-w-full p-4"></ol>
+                    </div>
+                </div>
+                <link
+                    rel="stylesheet"
+                    href="chrome-extension://okfkdaglfjjjfefdcppliegebpoegaii/assets/style.css" /></template
+        ></scribe-shadow>
+    </body>
+</html>

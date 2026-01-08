@@ -23,3 +23,4 @@ This repo is a personal sandbox for testing redesigns and content tweaks for the
 
 ## Notes
 - The goal is quick iteration, not production readiness.
+- Agent and style preferences live in `AGENTS.md`.

@@ -23,37 +23,6 @@ searchBox.addEventListener("focus", () => {
     searchBox.placeholder = "Search...";
 });
 
- document.addEventListener("DOMContentLoaded", function () {
-    // Wait for Cludo to render
-    const tryMoveVoiceButton = () => {
-      // Try different guesses for the Cludo-inserted button
-      const voiceBtn = document.querySelector('button[id*="voice"], button[class*="voice"], .cludo-voice-button, .voice-search-button');
-      const target = document.getElementById('cludo-voice-parent');
-
-      if (voiceBtn && target && !target.contains(voiceBtn)) {
-        target.appendChild(voiceBtn);
-        console.log('✅ Moved voice button into cludo-voice-parent');
-        return true;
-      }
-
-      return false;
-    };
-
-    // Keep checking every 200ms until we find the button or timeout
-    let attempts = 0;
-    const maxAttempts = 20;
-    const interval = setInterval(() => {
-      if (tryMoveVoiceButton() || ++attempts >= maxAttempts) {
-        clearInterval(interval);
-        if (attempts >= maxAttempts) {
-          console.warn('Voice button not found — Cludo may not be injecting it.');
-        }
-      }
-    }, 200);
-  });
-
-
-
 // Loading spinner for homepage and other
 document.addEventListener("DOMContentLoaded", function() {
   function addPreloaderToEmbed(embedElement) {
