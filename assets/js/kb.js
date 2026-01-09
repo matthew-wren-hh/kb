@@ -92,5 +92,64 @@
     document.querySelectorAll("pre").forEach(function(pre) {
       pre.setAttribute("tabindex", "0");
     });
+
+    var sideNav = document.querySelector(".side-nav");
+    if (sideNav && window.matchMedia) {
+      var mq = window.matchMedia("(min-width: 1101px)");
+      var syncSideNav = function(event) {
+        if (event.matches) {
+          sideNav.setAttribute("open", "");
+        } else {
+          sideNav.removeAttribute("open");
+        }
+      };
+
+      syncSideNav(mq);
+      if (typeof mq.addEventListener === "function") {
+        mq.addEventListener("change", syncSideNav);
+      } else if (typeof mq.addListener === "function") {
+        mq.addListener(syncSideNav);
+      }
+    }
+
+    if (sideNav) {
+      var triggerPairs = [];
+      sideNav.querySelectorAll('[data-toggle="collapse"]').forEach(function(trigger) {
+        var href = trigger.getAttribute("href") || "";
+        if (!href || href.charAt(0) !== "#") {
+          return;
+        }
+        var target = sideNav.querySelector(href);
+        if (!target) {
+          return;
+        }
+        trigger.setAttribute("aria-controls", href.slice(1));
+        trigger.setAttribute("aria-expanded", target.classList.contains("show") ? "true" : "false");
+        triggerPairs.push({ trigger: trigger, target: target });
+      });
+
+      var setVisibility = function(pair, isOpen) {
+        pair.target.classList.toggle("show", isOpen);
+        pair.target.style.maxHeight = isOpen ? pair.target.scrollHeight + "px" : "0px";
+        pair.trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      };
+
+      var closeAll = function(exceptTarget) {
+        triggerPairs.forEach(function(pair) {
+          var shouldOpen = pair.target === exceptTarget;
+          setVisibility(pair, shouldOpen);
+        });
+      };
+
+      closeAll(null);
+
+      triggerPairs.forEach(function(pair) {
+        pair.trigger.addEventListener("click", function(event) {
+          event.preventDefault();
+          var isOpen = pair.target.classList.contains("show");
+          closeAll(isOpen ? null : pair.target);
+        });
+      });
+    }
   });
 })();

@@ -1,98 +1,107 @@
-@import 'https://www.hannonhill.com/cascadecms/latest/_files/_redesign/lib/bootstrap/bootstrap.min.css';
+@import "https://www.hannonhill.com/cascadecms/latest/_files/_redesign/lib/bootstrap/bootstrap.min.css";
 
 :root {
-  --scroll-margin-top: 59px; /* Defines the default scroll margin top value. This variable
+    --scroll-margin-top: 59px; /* Defines the default scroll margin top value. This variable
    is used for adjusting the scroll position of anchor-linked elements. The value
    can be dynamically updated via JavaScript based on page-specific conditions, 
    such as the header size. The initial default value is set to 59px. */
 }
-body{
+body {
     font-size: 85%;
 }
 
-img{
+img {
     max-width: 100%;
     height: auto;
 }
 
-h1,h2,h3,h4,h5,h6,p,li,a{
-    font-family: "Open Sans",sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a {
+    font-family: "Open Sans", sans-serif;
 }
 
-a{
+a {
     color: #43739c;
 }
 
-a:hover{
-    text-decoration:none;
+a:hover {
+    text-decoration: none;
 }
 
-code{
-    color:#a70045;
+code {
+    color: #a70045;
 }
 
 td > code {
-	word-break: normal;
+    word-break: normal;
 }
 
 pre code {
     display: block;
     overflow-x: auto;
-    padding: .5em;
+    padding: 0.5em;
     background: #f8f8f8;
     /*border: 1px solid #ddd;*/
     border-radius: 3px;
     white-space: pre-wrap;
 }
 
-.jumbotron-homepage{
+.jumbotron-homepage {
     padding-top: 38px;
     padding-bottom: 30px;
 }
 
 @media (max-width: 979px) {
-  .jumbotron {
-    padding-top: 0px;
-  }
+    .jumbotron {
+        padding-top: 0px;
+    }
 
-  pre code {
-    max-height: none;
-  }
+    pre code {
+        max-height: none;
+    }
 }
 
-.content-wrapper{
+.content-wrapper {
     padding-top: 60px;
 }
 
-.sidenav{
-	 position: sticky;
-	 top: 4rem;
-	 height: calc(100vh - 4rem);
-	 overflow-y: auto;
+.sidenav {
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
 }
 
-.bg-dark{
+.bg-dark {
     background-color: #222630 !important;
 }
 
-.card-deck{
-    margin-bottom:30px;
+.card-deck {
+    margin-bottom: 30px;
 }
 
-.navbar{
+.navbar {
     padding: 0px 15px 0px 15px;
 }
 
 .navbar-brand {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 200;
-  padding: 0px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 200;
+    padding: 0px;
 }
 
 .navbar-brand img {
-    height: auto;
-    width: 24px;
+    padding-block: 13px;
+    max-width: 230px;
+    width: min-content;
 }
 
 .navbar-brand span {
@@ -101,7 +110,7 @@ pre code {
     text-align: middle;
 }
 
-.nav-item a{
+.nav-item a {
     color: rgba(255, 255, 255, 0.8) !important;
     line-height: 30px;
     border-top: 3px solid #222630;
@@ -114,71 +123,70 @@ pre code {
 /*}*/
 
 .breadcrumb {
-    background-color:#F5F5F5;
+    background-color: #f5f5f5;
 }
 
-.breadcrumb-item.active{
-    color:#212529;
+.breadcrumb-item.active {
+    color: #212529;
 }
 
-.breadcrumb-item+.breadcrumb-item::before{
-    color:#212529;
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #212529;
 }
 
-ul.list-unstyled li{
-    margin:5px 0;
+ul.list-unstyled li {
+    margin: 5px 0;
 }
 
-li.folder-item ul{
+li.folder-item ul {
     padding-left: 1rem;
 }
 
-li.folder-item > a{
-    font-weight:550;
+li.folder-item > a {
+    font-weight: 550;
 }
 
-li.parent-folder > a{
-    font-weight:650;
-    text-transform:uppercase;
+li.parent-folder > a {
+    font-weight: 650;
+    text-transform: uppercase;
 }
 
-ul.navHighlighter li{
-	list-style-type:none;
-	margin:5px 0;
-
+ul.navHighlighter li {
+    list-style-type: none;
+    margin: 5px 0;
 }
 ul.navHighlighter li.active {
-	margin:5px 0;
+    margin: 5px 0;
 }
-ul.navHighlighter li.active > a{
-	outline: 0;
-	font-weight:bold;
-}
-
-.list-group-item.active{
-    background-color:#E41961;
-    border-color:#E41961;
+ul.navHighlighter li.active > a {
+    outline: 0;
+    font-weight: bold;
 }
 
-.img-polaroid{
-	padding:4px;
-	background-color:#fff;
-	border:1px solid #ccc;
-	border:1px solid rgba(0,0,0,0.2);
-	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.1);
-	-moz-box-shadow:0 1px 3px rgba(0,0,0,0.1);
-	box-shadow:0 1px 3px rgba(0,0,0,0.1)
+.list-group-item.active {
+    background-color: #e41961;
+    border-color: #e41961;
 }
 
-.text-info{
-    color:#212529!important;
+.img-polaroid {
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.text-info {
+    color: #212529 !important;
 }
 
 .version {
     margin-bottom: 30px;
 }
 
-.version .card{
+.version .card {
     padding: 15px;
 }
 
@@ -202,83 +210,83 @@ ul.navHighlighter li.active > a{
     display: block;
     color: #212529;
 }
-    
+
 .version-meta.latest a {
     font-size: 250%;
     color: #212529;
     line-height: 30px;
 }
-    
+
 .version-meta.latest a:hover {
     color: #212529;
 }
-    
+
 .version-meta.latest a small {
     color: #212529;
 }
 
-.badge{
+.badge {
     font-weight: normal;
     font-size: 100%;
 }
 
-.badge-success{
-    background-color:#218739;
+.badge-success {
+    background-color: #218739;
 }
 
-.release-sidenav, .release-stats{
+.release-sidenav,
+.release-stats {
     margin-bottom: 20px;
 }
 
 .icon-cloud-release {
-	 color: #495057;
-	 line-height: 1.2;
+    color: #495057;
+    line-height: 1.2;
 }
 
-    .list-group-item-action.active .icon-cloud-release {
-        color: #fff;
-    }
+.list-group-item-action.active .icon-cloud-release {
+    color: #fff;
+}
 
 .icon-anchor-link {
-	 font-size: 16px;
-	 vertical-align: middle;
+    font-size: 16px;
+    vertical-align: middle;
 }
 
-.icon-chevron{
+.icon-chevron {
     line-height: 1.5;
 }
 .btn-coralpink {
-    background:#E41961;
-    color:#fff;
+    background: #e41961;
+    color: #fff;
 }
 .btn-coralpink:hover,
 .btn-coralpink:focus {
-    background:#cc1556;
-    color:#fff;
+    background: #cc1556;
+    color: #fff;
 }
 
 .btn-shark {
-   background:#22252F;
-   color:#fff;
+    background: #22252f;
+    color: #fff;
 }
-.btn-shark:hover, 
+.btn-shark:hover,
 .btn-shark:focus {
-    background:#111;
-    color:#fff;
+    background: #111;
+    color: #fff;
 }
 
-.btn-primary{
-    background:#E41961;
-    border-color:#E41961;
-    color:#fff;
+.btn-primary {
+    background: #e41961;
+    border-color: #e41961;
+    color: #fff;
 }
-
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background:#cc1556;
-    border-color:#cc1556;
-    color:#fff;
+    background: #cc1556;
+    border-color: #cc1556;
+    color: #fff;
 }
 
 /* Site Search 360 */
@@ -288,8 +296,8 @@ ul.navHighlighter li.active > a{
 }
 
 #unibox-suggest-box {
-	right: 0px;
-	left: -300px !important;
+    right: 0px;
+    left: -300px !important;
 }
 
 .ss360-content-container > a {
@@ -336,25 +344,25 @@ height: 5em !important;
 
 */
 .clive-field-wrapper {
-margin: 5pt 0px !important;
-width: 75%;
+    margin: 5pt 0px !important;
+    width: 75%;
 }
-.clive-submit-wrapper{
-width: 75%;
+.clive-submit-wrapper {
+    width: 75%;
 }
-.clive-submit{
-border:1px solid transparent !important;
-border-radius:.25rem !important;
+.clive-submit {
+    border: 1px solid transparent !important;
+    border-radius: 0.25rem !important;
 }
-.clive-submit:hover{
-background-color: rgba(0,0,0,0.2);
+.clive-submit:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Begin Fix contrast issues within tips/notes/warnings for accessibility 
 as part of #542 */
 
 .text-secondary {
-    color: #687278 !important;   
+    color: #687278 !important;
 }
 
 .alert.alert-danger a {
@@ -370,7 +378,7 @@ as part of #542 */
 .alert.alert-warning a {
     color: #856404;
     text-decoration: underline;
-}    
+}
 
 .alert.alert-danger code {
     color: #000;
@@ -417,44 +425,55 @@ as part of #542 */
    Scroll margin controlled by --scroll-margin-top.
    See GitHub issue #667 for details. */
 .anchor-heading {
-  scroll-margin-top: var(--scroll-margin-top);
+    scroll-margin-top: var(--scroll-margin-top);
 }
-
 
 /* End Fix contrast issues within tips/notes/warnings for accessibility 
 as part of #542 */
 
 /* github code style override*/
-.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs-tag .hljs-attr {
-    color: #006B6B !important;
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+    color: #006b6b !important;
 }
 
-.hljs-built_in, .hljs-builtin-name {
-    color: #007AA3 !important;    
+.hljs-built_in,
+.hljs-builtin-name {
+    color: #007aa3 !important;
 }
 
-.hljs-comment, .hljs-quote {
+.hljs-comment,
+.hljs-quote {
     color: #717160 !important;
 }
 /* End github code style override */
 
 /* Override bootstrap header styles */
-.h1,h1{
-	font-size:2rem
+.h1,
+h1 {
+    font-size: 2rem;
 }
-.h2,h2{
-	font-size:1.5rem
+.h2,
+h2 {
+    font-size: 1.5rem;
 }
-.h3,h3{
-	font-size:1.15rem
+.h3,
+h3 {
+    font-size: 1.15rem;
 }
-.h4,h4{
-	font-size:1rem
+.h4,
+h4 {
+    font-size: 1rem;
 }
-.h5,h5{
-	font-size:.8rem
+.h5,
+h5 {
+    font-size: 0.8rem;
 }
-.h6,h6{
-	font-size:.6rem
+.h6,
+h6 {
+    font-size: 0.6rem;
 }
 /* End Override bootstrap header styles */
