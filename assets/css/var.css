@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:wght@500;600&display=swap");
+
+:root {
+    --font-body: "IBM Plex Sans", "Avenir", "Montserrat", "Source Sans Pro",
+        sans-serif;
+    --font-head: "IBM Plex Serif", "IBM Plex Sans", "Georgia", serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas",
+        monospace;
+    --ink: #161c2d;
+    --muted: #506690;
+    --accent: #5533ff;
+    --accent-strong: #350dff;
+    --accent-warm: #e41961;
+    --accent-hover: #b01f5a;
+    --surface: #f9fbfd;
+    --surface-2: #edf4f8;
+    --card: #ffffff;
+    --border: #d9e2ef;
+    --code-bg: #edf1ff;
+    --code-border: #c6d3e6;
+    --shadow: 0 18px 36px rgba(22, 28, 45, 0.15);
+    --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.08);
+    --shadow-style: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075);
+    --border-radius: 5px;
+    --grid-gap: 1.5em;
+    --default-width: 90ch;
+    --full-width: 100%;
+    --tool-bg-color: rgba(22, 28, 45, 0.08);
+    --card-bg-color: #ffffff;
+    --color-accent: var(--accent-warm);
+    --color-accent-hover: var(--accent-hover);
+    --navbar-color: #2b354f;
+    --main-font: var(--font-body);
+    --scroll-margin-top: 59px; /* Defines the default scroll margin top value. This variable
+   is used for adjusting the scroll position of anchor-linked elements. The value
+   can be dynamically updated via JavaScript based on page-specific conditions, 
+   such as the header size. The initial default value is set to 59px. */
+}
