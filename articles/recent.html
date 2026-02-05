@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Date Tool Essentials - Cascade CMS Knowledge Base</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/images/apple-touch-icon-57x57.png"
+            name="favicon"
+            rel="shortcut icon"
+            type="image/png" />
+        <!--##HHILL_REGION:{"name":"CUSTOM CSS"}-->
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/style.css"
+            rel="stylesheet" />
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/custom.css"
+            rel="stylesheet" />
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/lib/prettify/prettify.css"
+            rel="stylesheet" />
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/prism/prism.css"
+            rel="stylesheet"
+            type="text/css" />
+        <link
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/lib/fonts/fontawesome-all.css"
+            rel="stylesheet" />
+
+        <!-- Preload Font Awesome fonts -->
+        <link
+            as="font"
+            crossorigin="anonymous"
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/lib/fonts/fa-solid-900.woff2"
+            rel="preload"
+            type="font/woff2" />
+        <link
+            as="font"
+            crossorigin="anonymous"
+            href="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/lib/fonts/fa-brands-400.woff2"
+            rel="preload"
+            type="font/woff2" />
+
+        <!-- Conditional comment for IE 7 -->
+        <!--[if IE 7]>
+            <link
+                rel="stylesheet"
+                href="/_files/lib/bootstrap/font-awesome-ie7.css" />
+        <![endif]-->
+        <link
+            href="https://customer.cludo.com/css/templates/v2.1/essentials/cludo-search.min.css"
+            rel="stylesheet"
+            type="text/css" />
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"CUSTOM CSS 2"}-->
+        <!--##HHILL_REGION_END-->
+        <script
+            src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+            type="text/javascript"></script>
+        <!--##HHILL_REGION:{"name":"CUSTOM JS"}-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+        <script
+            src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/lib/prettify/prettify.js"
+            type="text/javascript"></script>
+        <script
+            src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/lib/prettify/lang-css.js"
+            type="text/javascript"></script>
+        <script
+            src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/lib/prettify/lang-sql.js"
+            type="text/javascript"></script>
+        <script
+            src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/lib/prettify/lang-yaml.js"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                prettyPrint();
+            });
+        </script>
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"CUSTOM JS 2"}-->
+        <!--##HHILL_REGION_END-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!--##HHILL_REGION:{"name":"CANONICAL"}-->
+        <link
+            href="/entity/open.act?type=page&amp;id=b83b5634c0a8002b076bc996e70514be&amp;confId=3d1dd96fc0a8002b1841ecec1dcc2a48"
+            rel="canonical"
+            target="_parent" />
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"ID"}-->
+        <meta content="b83b5634c0a8002b076bc996e70514be" name="id" />
+        <!--##HHILL_REGION_END-->
+    </head>
+    <body data-spy="scroll" data-target=".release-sidebar">
+        <!--##HHILL_REGION:{"name":"SKIP-LINKS"}--><a
+            class="sr-only sr-only-focusable"
+            href="#main-content"
+            >Skip to main content</a
+        >
+        <a class="sr-only sr-only-focusable" href="#sidebar"
+            >Skip to sidebar / page navigation</a
+        ><!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"BODY-SCRIPTS"}--><!-- Google Tag Manager (noscript) --><noscript
+            ><iframe
+                height="0"
+                src="https://www.googletagmanager.com/ns.html?id=GTM-WQQX65"
+                style="display: none; visibility: hidden"
+                width="0"></iframe></noscript
+        ><!-- End Google Tag Manager (noscript) --><!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"SITE NAVIGATION BAR"}-->
+
+        <nav
+            aria-labelledby="navbar-brand"
+            class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a
+                class="navbar-brand"
+                href="/entity/open.act?type=page&amp;id=ba1ca0fa0a894fa568b1ecd463763a04&amp;confId=c80fdceac0a8002b31acdf3b85da226d"
+                id="navbar-brand"
+                name="brand"
+                target="_parent"
+                ><img
+                    alt="Cascade CMS Logo"
+                    src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/_images/kb-logo-new.png"
+            /></a>
+            <button
+                aria-controls="navbarCollapse"
+                aria-expanded="false"
+                aria-label="toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarCollapse"
+                data-toggle="collapse"
+                type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/entity/open.act?type=page&amp;id=8aa30dbf3211e371114dadd55540d4fe&amp;confId=c013abd3c0a8002b3c10e17cc6084d1e"
+                            target="_parent"
+                            >Release Notes</a
+                        >
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="https://help.hannonhill.com/hc/en-us"
+                            >Support</a
+                        >
+                    </li>
+                </ul>
+                <nav>
+                    <form
+                        class="form-inline search-bar"
+                        id="cludo-search-form-top"
+                        role="search">
+                        <div class="search-box">
+                            <input
+                                aria-label="Search"
+                                autocomplete="off"
+                                class="form-control form-control-sm search-input"
+                                id="searchBox"
+                                name="q"
+                                placeholder="Search..."
+                                type="search" />
+                            <a
+                                class="search-btn"
+                                href="#"
+                                id="cludo-voice-parent"
+                                type="button">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                        </div>
+                    </form>
+                </nav>
+            </div>
+        </nav>
+
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"BREADCRUMB-NEW"}--><!--##HHILL_REGION_END-->
+        <div class="container">
+            <div class="content-wrapper">
+                <!--##HHILL_REGION:{"name":"SITE BREADCRUMB"}-->
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a
+                                href="/entity/open.act?type=page&amp;id=ba1ca0fa0a894fa568b1ecd463763a04&amp;confId=c80fdceac0a8002b31acdf3b85da226d"
+                                target="_parent">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a
+                                href="/entity/open.act?type=page&amp;id=9f5ca5da0a894fa53c7976273f5ef46a&amp;confId=6b4b27f7c0a8002b4b50176baff1fe04"
+                                target="_parent">
+                                Developing in Cascade
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a
+                                href="/entity/open.act?type=page&amp;id=e54f61de0a894fa568b1ecd43288aa2b&amp;confId=600b0d11c0a8002b659d90fb9f3fcca4"
+                                target="_parent">
+                                Formats
+                            </a>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item active">
+                            Date Tool Essentials
+                        </li>
+                    </ol>
+                </nav>
+                <!--##HHILL_REGION_END-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <!--##HHILL_REGION:{"name":"DEFAULT ASIDE ABOVE"}-->
+                        <!--##HHILL_REGION_END-->
+                        <!--##HHILL_REGION:{"name":"DEFAULT ASIDE"}--><a
+                            aria-controls="sidebar"
+                            aria-expanded="false"
+                            class="btn d-md-none sidebarButton mb-2"
+                            data-toggle="collapse"
+                            href="#sidebar"
+                            role="button"
+                            >☰</a
+                        >
+                        <nav
+                            class="sidenav site-footer collapse d-md-block mb-2"
+                            id="sidebar">
+                            <h3>In this Section</h3>
+                            <ul
+                                class="list-unstyled list-group list-group-item mb-2">
+                                <li class="folder-item">
+                                    <a
+                                        aria-label="Section Topic"
+                                        href="/entity/open.act?type=page&amp;id=b83b5634c0a8002b076bc996e70514be&amp;confId=3d1dd96fc0a8002b1841ecec1dcc2a48"
+                                        target="_parent"
+                                        >Date Tool Essentials</a
+                                    >
+                                    <ul class="navHighlighter">
+                                        <li>
+                                            <a
+                                                aria-label="Skip to Overview"
+                                                href="#Overview"
+                                                >Overview</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to .getDate() vs .toDate()"
+                                                href="#_getDatevs_toDate"
+                                                >.getDate() vs .toDate()</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to Using difference()"
+                                                href="#Usingdifference"
+                                                >Using difference()</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to whenIs() basics"
+                                                href="#whenIsbasics"
+                                                >whenIs() basics</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to getCalendar basics"
+                                                href="#getCalendarbasics"
+                                                >getCalendar basics</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to Formatting output"
+                                                href="#Formattingoutput"
+                                                >Formatting output</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                aria-label="Skip to Handling time zones "
+                                                href="#Handlingtimezones"
+                                                >Handling time zones
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul
+                                class="list-unstyled list-group list-group-item">
+                                <li class="parent-folder">
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=9f5ca5da0a894fa53c7976273f5ef46a&amp;confId=6b4b27f7c0a8002b4b50176baff1fe04"
+                                        target="_parent"
+                                        >Developing in Cascade</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=673e76e10a894fa553437b761f3e6913&amp;confId=3d1fa22cc0a8002b1841ecec089cfdfc"
+                                        target="_parent"
+                                        >Velocity Tools</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://github.com/hannonhill/Velocity-Cookbook"
+                                        ><i class="fas fa-external-link-alt">
+                                        </i>
+                                        Cascade CMS Velocity Examples</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=9290e3bac0a8002b3249e88a9b8fb375&amp;confId=3d1dd96fc0a8002b1841ecec1dcc2a48"
+                                        target="_parent"
+                                        >Best practices for performance</a
+                                    >
+                                </li>
+                            </ul>
+                        </nav>
+                        <script>
+                            document.addEventListener(
+                                "DOMContentLoaded",
+                                function () {
+                                    // Function to toggle the sidebar's 'show' class based on window width
+                                    function toggleSidebar() {
+                                        var width = window.innerWidth;
+                                        var sidebar =
+                                            document.getElementById("sidebar");
+                                        if (Math.max(width, 768) === width) {
+                                            // Assumes 'md' breakpoint is at 768px
+                                            sidebar.classList.add("show");
+                                        } else {
+                                            sidebar.classList.remove("show");
+                                        }
+                                    }
+
+                                    // Run on initial load
+                                    toggleSidebar();
+
+                                    // Attach the function to the resize event listener
+                                    window.addEventListener(
+                                        "resize",
+                                        toggleSidebar
+                                    );
+                                }
+                            );
+                        </script>
+                        <!--##HHILL_REGION_END-->
+                        <!--##HHILL_REGION:{"name":"DEFAULT ASIDE BELOW"}--><!--##HHILL_REGION_END-->
+                        <!--##HHILL_REGION:{"name":"AT A GLANCE"}--><!--##HHILL_REGION_END-->
+                    </div>
+                    <main
+                        class="col-sm-12 col-md-9"
+                        id="main-content"
+                        role="main">
+                        <!--##HHILL_REGION:{"name":"DEFAULT ABOVE"}--><!--##HHILL_REGION_END-->
+                        <!--##HHILL_REGION:{"name":"DEFAULT"}-->
+
+                        <style>
+                            main {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 1em;
+                            }
+                        </style>
+
+                        <div class="card shadow-big width" id="expand">
+                            <div class="icon-wrapper">
+                                <i
+                                    class="fa-solid col-visible-md fa-up-right-and-down-left-from-center"
+                                    id="iconToggle"
+                                    onclick="toggleWidthAndIcon()"></i>
+                            </div>
+                            <div class="flex">
+                                <span class="badge badge-danger">Formats</span>
+                            </div>
+                            <header>
+                                <h1>Date Tool Essentials</h1>
+                            </header>
+                            <a name="Date+Tool+Essentials"></a>
+
+                            <section
+                                aria-label="Overview"
+                                class="anchor-heading"
+                                id="Overview">
+                                <h2>
+                                    Overview
+                                    <a
+                                        aria-label="Skip to Overview"
+                                        href="#Overview"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    The Date Tool lets you retrieve, parse,
+                                    format, and compare date/time values in
+                                    Velocity. It is especially useful when you
+                                    are working with Unix timestamps in
+                                    milliseconds (such as Index Block XML
+                                    values), normalizing mixed time zones from
+                                    feeds, or formatting human-readable dates
+                                    for display.
+                                </p>
+                                <ul>
+                                    <li>
+                                        Convert Unix timestamps in milliseconds
+                                        to Java Dates.
+                                    </li>
+                                    <li>
+                                        Parse formatted strings into Dates
+                                        with&#160;<code>toDate()</code>.
+                                    </li>
+                                    <li>
+                                        Format Dates for display
+                                        with&#160;<code>format()</code>.
+                                    </li>
+                                    <li>
+                                        Compare two dates
+                                        using&#160;<code>difference()</code>.
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section
+                                aria-label=".getDate() vs .toDate()"
+                                class="anchor-heading"
+                                id="_getDatevs_toDate">
+                                <h2>
+                                    .getDate() vs .toDate()
+                                    <a
+                                        aria-label="Skip to .getDate() vs .toDate()"
+                                        href="#_getDatevs_toDate"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    Use <code>.getDate()</code> when you already
+                                    have a Unix timestamp in milliseconds (for
+                                    example, from metadata like
+                                    <code>$currentPage.metadata.startDate</code
+                                    >) and need a Java Date for formatting or
+                                    comparison. If you omit the argument,
+                                    <code>getDate()</code> returns the current
+                                    moment.
+                                </p>
+                                <p>
+                                    If your input is a human-readable date
+                                    string (like <code>03-21-2024</code>), use
+                                    <code>.toDate()</code> instead. The pattern
+                                    you pass must match the string exactly; if
+                                    it does not, you will get
+                                    <code>null</code> rather than a parsed date.
+                                </p>
+                                <p>
+                                    A quick rule: numeric Unix timestamps go to
+                                    <code>getDate()</code>, formatted strings go
+                                    to <code>toDate()</code>. Keep your patterns
+                                    consistent so your parsing and display stay
+                                    in sync.
+                                </p>
+                                <p>
+                                    These two are easy to mix up:
+                                    <code>getDate()</code> expects (or defaults
+                                    to) a numeric timestamp and hands you back a
+                                    Date object, while
+                                    <code>toDate()</code> converts a string
+                                    <em>to</em> a Date object by matching the
+                                    syntax in the string with your pattern.
+                                </p>
+                                <pre><code>
+$_DateTool.getDate()
+
+#set ($pubDate = $currentPage.lastPublishedOn)
+$_DateTool.getDate($pubDate)
+</code></pre>
+                                <pre><code>
+#set ($dateString = "03-21-2024")
+#set ($date = $_DateTool.toDate("MM-dd-yyyy", $dateString))
+$_DateTool.format("MMMM d, yyyy", $date)
+</code></pre>
+                                <pre><code>
+## Shorthand numeric format
+#set ($shipDateString = "2024-07-05")
+#set ($shipDate = $_DateTool.toDate("yyyy-MM-dd", $shipDateString))
+$_DateTool.format("MMM d, yyyy", $shipDate)
+</code></pre>
+                                <pre><code>
+## Specific timestamp format with time
+#set ($stamp = "2024-07-05 14:30:00")
+#set ($stampDate = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+$_DateTool.format("EEEE, MMM d 'at' h:mma", $stampDate)
+</code></pre>
+                                <pre><code>
+## Unix milliseconds to display
+#set ($startMillis = $currentPage.metadata.startDate) ## e.g., 1719878400000
+#set ($startDate = $_DateTool.getDate($startMillis))
+$_DateTool.format("yyyyMMdd", $startDate)
+</code></pre>
+                                <table class="table table-bordered table-hover">
+                                    <caption>
+                                        Quick compare: getDate vs toDate.
+                                    </caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Method</th>
+                                            <th scope="col">Input</th>
+                                            <th scope="col">When to use</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <code
+                                                    >$_DateTool.getDate&lt;/code
+                                                    &gt;
+                                                </code>
+                                            </td>
+                                            <td>
+                                                Unix timestamp in milliseconds
+                                            </td>
+                                            <td>
+                                                Convert a numeric timestamp to a
+                                                Date for formatting or
+                                                comparison.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <code
+                                                    >$_DateTool.toDate&lt;/code
+                                                    &gt;
+                                                </code>
+                                            </td>
+                                            <td>
+                                                Formatted date string + pattern
+                                            </td>
+                                            <td>
+                                                Parse a human-readable date
+                                                string into a Date.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    <strong>Pitfall</strong> -
+                                    <code>getDate()</code> expects milliseconds.
+                                    If you pass seconds, your date will land
+                                    near 1970.
+                                </p>
+                            </section>
+
+                            <section
+                                aria-label="Using difference()"
+                                class="anchor-heading"
+                                id="Usingdifference">
+                                <h2>
+                                    Using difference()
+                                    <a
+                                        aria-label="Skip to Using difference()"
+                                        href="#Usingdifference"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <section
+                                    aria-label="Using difference()"
+                                    class="anchor-heading"
+                                    id="DifferenceUsage">
+                                    <p>
+                                        <code>difference()</code> returns a
+                                        <strong>Comparison</strong> object that
+                                        describes the distance between two
+                                        dates. When printed, it renders a
+                                        human-readable value (like
+                                        <code>5 months</code>), and it also
+                                        includes structured fields like
+                                        <code>days</code>, <code>months</code>,
+                                        <code>relative</code>, and
+                                        <code>full</code>.
+                                    </p>
+                                    <h3 id="DifferenceParseDates">
+                                        Parsing dates for comparison
+                                    </h3>
+                                    <p>
+                                        Most real-world use starts by converting
+                                        a string into a Date. Keep the format
+                                        string aligned with your input (this is
+                                        the part that usually breaks).
+                                    </p>
+                                    <pre><code>#set ($today = $_DateTool.getDate())
+
+## Example input: "07-04-26" (MM-dd-yy)
+#set ($manualDate = "07-04-26")
+#set ($targetDate = $_DateTool.toDate("MM-dd-yy", $manualDate))
+
+$today       ## Wed Jan 14 14:36:28 EST 2026
+$targetDate  ## Sat Jul 04 00:00:00 EDT 2026</code></pre>
+                                    <h3 id="DifferenceBasic">
+                                        Basic example: distance between two
+                                        dates
+                                    </h3>
+                                    <p>
+                                        Use
+                                        <code>difference(dateA, dateB)</code>
+                                        when you want the distance between two
+                                        dates. This is best for countdowns,
+                                        &#8220;time since&#8221; labels, or
+                                        comparisons used in logic.
+                                    </p>
+                                    <pre><code>#set ($today = $_DateTool.getDate())
+#set ($manualDate = "07-04-26")
+#set ($targetDate = $_DateTool.toDate("MM-dd-yy", $manualDate))
+
+## Compare today to the target date
+#set ($difference = $_DateTool.difference($today, $targetDate))
+
+$today       ## Wed Jan 14 14:36:28 EST 2026
+$targetDate  ## Sat Jul 04 00:00:00 EDT 2026
+$difference  ## 5 months</code></pre>
+                                    <h3 id="DifferenceUsefulFields">
+                                        Useful fields on the Comparison object
+                                    </h3>
+                                    <p>
+                                        The returned object is more than just a
+                                        string. These are the fields
+                                        you&#8217;ll actually use in templates
+                                        and UI labels:
+                                    </p>
+                                    <pre><code>$difference.abbr         ## 5 mos
+$difference.difference    ## 5 months
+$difference.relative      ## 5 months later
+$difference.full          ## 5 months 2 weeks 6 days 8 hours 23 minutes ...
+
+$difference.days          ## 170
+$difference.weeks         ## 24
+$difference.months        ## 5
+$difference.years         ## 0
+
+$difference.class         ## class org.apache.velocity.tools.generic.ComparisonDateTool$Comparison</code></pre>
+                                    <h3 id="DifferenceBranchingLabel">
+                                        Branching UI label: &#8220;Still coming
+                                        up&#8221; vs &#8220;Happened&#8221;
+                                    </h3>
+                                    <p>
+                                        For simple branching logic,
+                                        <code>days</code> is the easiest field
+                                        to work with. Just be consistent about
+                                        argument order. In the example below, a
+                                        positive number means the target date is
+                                        in the future (relative to today).
+                                    </p>
+                                    <pre><code>#set ($today = $_DateTool.getDate())
+#set ($manualDate = "07-04-26")
+#set ($targetDate = $_DateTool.toDate("MM-dd-yy", $manualDate))
+#set ($difference = $_DateTool.difference($today, $targetDate))
+
+#if ($difference.days &gt;= 0)
+  Still coming up (in $difference.abbr)
+#else
+  Happened ($difference.abbr ago)
+#end</code></pre>
+                                    <p>
+                                        Tip: For &#8220;ago&#8221; labels, you
+                                        can also use
+                                        <code>$difference.abs()</code> if you
+                                        want a cleaner positive duration
+                                        (example: <code>5 months</code> instead
+                                        of <code>-5 months</code>).
+                                    </p>
+                                </section>
+                            </section>
+
+                            <section
+                                aria-label="whenIs() basics"
+                                class="anchor-heading"
+                                id="whenIsbasics">
+                                <h2>
+                                    whenIs() basics
+                                    <a
+                                        aria-label="Skip to whenIs() basics"
+                                        href="#whenIsbasics"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    <code>whenIs()</code> answers the more human
+                                    question: &#8220;When is A relative to
+                                    B?&#8221; It also returns a
+                                    <strong>Comparison</strong> object, but the
+                                    output is naturally directional (<code
+                                        >earlier</code
+                                    >
+                                    / <code>later</code>), which is great for
+                                    client-facing labels.
+                                </p>
+                                <h3 id="WhenIsNow">
+                                    No-arg usage: &#8220;now&#8221;
+                                </h3>
+                                <pre><code>## today is January 13, 2026 in this example
+#set ($today = $_DateTool.getDate())
+
+#set ($whenIs = $_DateTool.whenIs($today))
+$whenIs
+## now</code></pre>
+                                <h3 id="WhenIsCompareTwoDates">
+                                    Comparing two dates (both directions)
+                                </h3>
+                                <p>
+                                    Argument order matters. Swapping them flips
+                                    <code>earlier</code> vs <code>later</code>.
+                                </p>
+                                <pre><code>#set ($today = $_DateTool.getDate())
+
+#set ($manualDate = "July 4, 2026")
+#set ($targetDate = $_DateTool.toDate("MMMM dd, yyyy", $manualDate))
+
+$targetDate
+## Sat Jul 04 00:00:00 EDT 2026
+
+## Target compared to today
+#set ($whenIsA = $_DateTool.whenIs($targetDate, $today))
+$whenIsA
+## 5 months earlier
+
+## Today compared to target
+#set ($whenIsB = $_DateTool.whenIs($today, $targetDate))
+$whenIsB
+## 5 months later</code></pre>
+                                <h3 id="WhenIsUsefulFields">
+                                    Useful fields (same Comparison object)
+                                </h3>
+                                <p>
+                                    Same object structure as
+                                    <code>difference()</code>, but the human
+                                    strings are usually what you want to show
+                                    clients (<code>relative</code>,
+                                    <code>abbr</code>, <code>full</code>).
+                                </p>
+                                <pre><code>$whenIsB.abbr        ## 5 mos later
+$whenIsB.relative     ## 5 months later
+$whenIsB.difference   ## 5 months
+$whenIsB.full         ## 5 months 3 weeks 7 hours ... later
+
+$whenIsB.days         ## 171
+$whenIsB.months       ## 5
+$whenIsB.years        ## 0
+
+$whenIsB.class        ## class org.apache.velocity.tools.generic.ComparisonDateTool$Comparison</code></pre>
+                                <h3 id="WhenIsBranchingLabel">
+                                    Branching UI label: &#8220;didn&#8217;t
+                                    happen yet&#8221; vs &#8220;you missed
+                                    it&#8221;
+                                </h3>
+                                <p>
+                                    This is a clean pattern for client-friendly
+                                    messaging. Just decide what
+                                    &#8220;positive&#8221; means for your
+                                    argument order and stick to it.
+                                </p>
+                                <pre><code>#set ($today = $_DateTool.getDate())
+#set ($manualDate = "July 4, 2026")
+#set ($targetDate = $_DateTool.toDate("MMMM dd, yyyy", $manualDate))
+
+## "today relative to target"
+#set ($whenIs = $_DateTool.whenIs($today, $targetDate))
+
+#if ($whenIs.days &gt; 0)
+  Didn't happen yet ($whenIs.abbr)
+#else
+  You missed it ($whenIs.abbr)
+#end</code></pre>
+                            </section>
+
+                            <section
+                                aria-label="getCalendar basics"
+                                class="anchor-heading"
+                                id="getCalendarbasics">
+                                <h2>
+                                    getCalendar basics
+                                    <a
+                                        aria-label="Skip to getCalendar basics"
+                                        href="#getCalendarbasics"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    <code>getCalendar()</code> returns a Java
+                                    <code>Calendar</code> object representing
+                                    the current date and time in Cascade&#8217;s
+                                    configured time zone. Use it when you need
+                                    to read specific parts of &#8220;now&#8221;
+                                    (year, month, day, weekday, hour) as numeric
+                                    values for logic.
+                                </p>
+                                <pre><code>#set ($cal = $_DateTool.getCalendar())
+
+## Calendar field IDs (numbers) are used by:
+## $cal.get(fieldId)
+
+$cal.get(1)  ## YEAR
+## Example output: 2026
+
+$cal.get(2)  ## MONTH (zero-based: January = 0)
+## Example output: 0
+
+$cal.get(5)  ## DAY_OF_MONTH
+## Example output: 15
+
+$cal.get(7)  ## DAY_OF_WEEK (Sunday = 1 ... Saturday = 7)
+## Example output: 5
+
+$cal.get(11) ## HOUR_OF_DAY (0&#8211;23)
+## Example output: 15</code></pre>
+                                <p>
+                                    These numeric field IDs are standard Java
+                                    Calendar constants. You&#8217;ll typically
+                                    only need a small subset of them when
+                                    working with <code>getCalendar()</code>.
+                                </p>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Field ID</th>
+                                            <th>Meaning</th>
+                                            <th>Notes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>1</code></td>
+                                            <td>YEAR</td>
+                                            <td>4-digit year</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>2</code></td>
+                                            <td>MONTH</td>
+                                            <td>
+                                                Zero-based: January =
+                                                <code>0</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>5</code></td>
+                                            <td>DAY_OF_MONTH</td>
+                                            <td>1&#8211;31</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>6</code></td>
+                                            <td>DAY_OF_YEAR</td>
+                                            <td>1&#8211;365/366</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>7</code></td>
+                                            <td>DAY_OF_WEEK</td>
+                                            <td>
+                                                Sunday = <code>1</code>,
+                                                Saturday = <code>7</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>9</code></td>
+                                            <td>AM_PM</td>
+                                            <td>
+                                                <code>0</code> = AM,
+                                                <code>1</code> = PM
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>11</code></td>
+                                            <td>HOUR_OF_DAY</td>
+                                            <td>24-hour clock (0&#8211;23)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>12</code></td>
+                                            <td>MINUTE</td>
+                                            <td>0&#8211;59</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    <strong>Important:</strong>
+                                    <code>getCalendar()</code> is best treated
+                                    as a read-only helper in Cascade. For date
+                                    math or comparisons, use
+                                    <code>difference()</code> or
+                                    <code>whenIs()</code>. For formatting, use
+                                    <code>format()</code>.
+                                </p>
+                            </section>
+
+                            <section
+                                aria-label="Formatting output"
+                                class="anchor-heading"
+                                id="Formattingoutput">
+                                <h2>
+                                    Formatting output
+                                    <a
+                                        aria-label="Skip to Formatting output"
+                                        href="#Formattingoutput"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    Keep your output consistent by reusing a
+                                    small set of format strings. Popular options
+                                    include:
+                                </p>
+                                <ul>
+                                    <li><code>MMMM d, yyyy</code></li>
+                                    <li><code>MMM d, yyyy</code></li>
+                                    <li><code>yyyy-MM-dd</code></li>
+                                    <li><code>yyyyMMdd</code></li>
+                                    <li>
+                                        <code
+                                            >EEEE, MMMM d, yyyy 'at'
+                                            h:mma&lt;/code &gt;
+                                        </code>
+                                    </li>
+                                    <li>
+                                        <code
+                                            >yyyy-MM-dd'T'HH:mm:ssXXX&lt;/code
+                                            &gt; (ISO 8601 with offset)
+                                        </code>
+                                    </li>
+                                    <li>
+                                        <code>HH:mm</code> (24-hour) and
+                                        <code>h:mma</code> (12-hour)
+                                    </li>
+                                    <li>
+                                        <code>'Week' w, yyyy</code> (week
+                                        number)
+                                    </li>
+                                </ul>
+                                <p>Common symbols:</p>
+                                <table class="table table-bordered table-hover">
+                                    <caption>
+                                        Common date format symbols
+                                    </caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Symbol</th>
+                                            <th scope="col">Meaning</th>
+                                            <th scope="col">
+                                                Variations / examples
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>y</code></td>
+                                            <td>Year</td>
+                                            <td>
+                                                y=2024 <br />
+                                                yy=24 <br />
+                                                yyyy=2024
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>M</code></td>
+                                            <td>Month (1-12)</td>
+                                            <td>
+                                                M=8 <br />
+                                                MM=08 <br />
+                                                MMM=Aug <br />
+                                                MMMM=August
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>d</code></td>
+                                            <td>Day of month</td>
+                                            <td>
+                                                d=5 <br />
+                                                dd=05
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>E</code></td>
+                                            <td>Day name</td>
+                                            <td>
+                                                E=Wed <br />
+                                                EEE=Wed <br />
+                                                EEEE=Wednesday
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>H</code></td>
+                                            <td>Hour 0-23</td>
+                                            <td>
+                                                H=9 <br />
+                                                HH=09
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>h</code></td>
+                                            <td>Hour 1-12</td>
+                                            <td>
+                                                h=9 <br />
+                                                hh=09
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>m</code></td>
+                                            <td>Minute</td>
+                                            <td>
+                                                m=3 <br />
+                                                mm=03
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>s</code></td>
+                                            <td>Second</td>
+                                            <td>
+                                                s=7 <br />
+                                                ss=07
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>a</code></td>
+                                            <td>AM/PM marker</td>
+                                            <td>a=AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>z</code></td>
+                                            <td>Time zone abbreviation</td>
+                                            <td>
+                                                z=EDT <br />
+                                                zzzz=Eastern Daylight Time
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>X</code></td>
+                                            <td>ISO 8601 offset</td>
+                                            <td>
+                                                X=-5 <br />
+                                                XX=-0500 <br />
+                                                XXX=-05:00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>w</code></td>
+                                            <td>Week of year</td>
+                                            <td>
+                                                w=34 <br />
+                                                ww=34
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    Practical examples using the same timestamp:
+                                </p>
+                                <pre><code>#set ($stamp = "2024-08-21 13:45:00")
+#set ($date = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+
+$_DateTool.format("MMMM d, yyyy", $date)
+## August 21, 2024
+
+$_DateTool.format("EEE, MMM d 'at' h:mma", $date)
+## Wed, Aug 21 at 1:45PM
+
+$_DateTool.format("yyyy-MM-dd'T'HH:mm:ssXXX", $date, $_DateTool.getTimeZone("America/Chicago"))
+## 2024-08-21T13:45:00-05:00
+
+$_DateTool.format("'Week' w, yyyy", $date)
+## Week 34, 2024</code></pre>
+                                <p>
+                                    If you need time zones, pass a
+                                    <code>TimeZone</code> into
+                                    <code>format()</code>:
+                                </p>
+                                <pre><code>#set ($stamp = "2024-07-05 14:30:00")
+#set ($tz = $_DateTool.getTimeZone("America/New_York"))
+#set ($dateTime = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+
+$_DateTool.format("MMMM d, yyyy 'at' h:mma z", $dateTime, $tz)
+## Example output: July 5, 2024 at 2:30PM EDT</code></pre>
+                                <p>
+                                    When dates span multiple regions, keep the
+                                    same format strings and swap in the
+                                    appropriate time zone for each
+                                    item&#8212;see Handling time zones below for
+                                    a durable pattern.
+                                </p>
+                            </section>
+
+                            <section
+                                aria-label="Handling time zones "
+                                class="anchor-heading"
+                                id="Handlingtimezones">
+                                <h2>
+                                    Handling time zones
+                                    <a
+                                        aria-label="Skip to Handling time zones "
+                                        href="#Handlingtimezones"
+                                        ><i
+                                            class="fas fa-link icon-anchor-link"></i
+                                    ></a>
+                                </h2>
+                                <p>
+                                    Feeds frequently mix timestamps and time
+                                    zone strings (for example,
+                                    <code>2024-08-21 13:00:00</code> with
+                                    <code>America/Chicago</code>). If you format
+                                    those dates with your server's default time
+                                    zone, event times can appear hours off.
+                                    Velocity can normalize each feed item by
+                                    parsing the timestamp and explicitly
+                                    applying the feed's time zone before
+                                    rendering. Cloud environments can pass a
+                                    zone string directly to
+                                    <code>$_DateTool.getTimeZone()</code>, but
+                                    some on-premises versions block nested calls
+                                    like
+                                    <code
+                                        >$_DateTool.getTimeZone().getTimeZone()</code
+                                    >. Use a reflection fallback to stay
+                                    compatible.
+                                </p>
+                                <pre><code>## feed fields: $event.start (yyyy-MM-dd HH:mm:ss), $event.timezone (e.g., America/Chicago)
+#set ($tzClass = $_DateTool.getTimeZone().getClass().forName("java.util.TimeZone"))
+#set ($targetTz = $tzClass.getMethod("getTimeZone", $tzClass.forName("java.lang.String")).invoke(null, $event.timezone))
+
+#set ($parser = $_DateTool.getDateFormat("yyyy-MM-dd HH:mm:ss", $_DateTool.getLocale(), $_DateTool.getTimeZone()))
+#set ($start = $parser.parse($event.start))
+
+$_DateTool.format("MMM d, yyyy h:mma z", $start, $_DateTool.getLocale(), $targetTz)
+## Example output: Aug 21, 2019 1:00PM CDT</code></pre>
+                                <p>
+                                    Need to verify time zone strings? Call
+                                    <code>getAvailableIDs</code> through the
+                                    same class reference:
+                                </p>
+                                <pre><code>#set ($allIds = $tzClass.getMethod("getAvailableIDs", null).invoke(null, null))
+$_ListTool.toList($allIds)</code></pre>
+                                <p>
+                                    Once you normalize each event's time zone,
+                                    reuse the formats from the previous section
+                                    to keep output consistent for every
+                                    audience.
+                                </p>
+                            </section>
+                            <a
+                                aria-label="Back to top"
+                                class="scroll-container"
+                                href="#top">
+                                <span class="scroll-container__icon">↑</span>
+                            </a>
+                        </div>
+
+                        <script>
+                            function toggleWidthAndIcon() {
+                                var element = document.getElementById("expand");
+                                var icon =
+                                    document.getElementById("iconToggle");
+
+                                // Check if the content is currently full width
+                                if (element.classList.contains("width-full")) {
+                                    // If yes, switch to "width" and update the icon to "expand"
+                                    element.classList.remove("width-full");
+                                    element.classList.add("width");
+                                    icon.classList.remove(
+                                        "fa-down-left-and-up-right-to-center"
+                                    );
+                                    icon.classList.add(
+                                        "fa-up-right-and-down-left-from-center"
+                                    );
+                                } else {
+                                    // If not, switch to "width-full" and update the icon to "un-expand"
+                                    element.classList.remove("width");
+                                    element.classList.add("width-full");
+                                    icon.classList.remove(
+                                        "fa-up-right-and-down-left-from-center"
+                                    );
+                                    icon.classList.add(
+                                        "fa-down-left-and-up-right-to-center"
+                                    );
+                                }
+                            }
+                        </script>
+                        <!--##HHILL_REGION_END-->
+                        <!--##HHILL_REGION:{"name":"DEFAULT BELOW"}--><!--##HHILL_REGION_END-->
+                    </main>
+                </div>
+            </div>
+            <footer>
+                <!--##HHILL_REGION:{"name":"SITE COPYRIGHT"}-->
+                <div class="footer-wrapper">
+                    <div class="cludo-feedback"></div>
+                    <hr />
+                    <div class="footer-container">
+                        <div class="footer-left">
+                            <img
+                                alt="cascade cms icon"
+                                class="footer-logo"
+                                src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/images/apple-touch-icon-57x57.png" />
+
+                            <p class="" id="site-copyright">
+                                All content © 2026
+                                <a
+                                    href="/entity/open.act?type=page&amp;id=2c7adc87c0a8002b34fdef62d71c1eb7&amp;confId=2c7b072ec0a8002b602e888e22ac12ec"
+                                    target="_parent"
+                                    >Hannon Hill</a
+                                >
+                            </p>
+                        </div>
+                        <div class="footer-right">
+                            <ul>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=d25c29a5c0a8002b19b702fdfd364154&amp;confId=d2623934c0a8002b19b702fda82a8f34"
+                                        target="_parent"
+                                        >About us</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=d25c55e2c0a8002b19b702fd35da5ea0&amp;confId=ed7be0b8c0a8002b0e253be2d2a616f6"
+                                        target="_parent"
+                                        >Careers</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=d262314fc0a8002b19b702fdc82ad395&amp;confId=d2623934c0a8002b19b702fda82a8f34"
+                                        target="_parent"
+                                        >Compliance</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=d25c833bc0a8002b19b702fdb14ee3f5&amp;confId=d2623abcc0a8002b19b702fd01478f99"
+                                        target="_parent"
+                                        >Resources</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://portal.productboard.com/gp4tteft4txh4nde2tnnnybl"
+                                        >Idea Portal</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/entity/open.act?type=page&amp;id=ea8f43143211e37179552d42ceece3d3&amp;confId=2e36ffcbc0a8002b4b344679d3692f99"
+                                        target="_parent"
+                                        >Site Index</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="https://github.com/hannonhill"
+                                        >Github</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--##HHILL_REGION_END-->
+            </footer>
+        </div>
+        <!--##HHILL_REGION:{"name":"CUSTOM JS FOOT"}-->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+        <script src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/lib/bootstrap/bootstrap.min.js"></script>
+        <script src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/lib/bootstrap/scrollspy.js"></script>
+        <script src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/application.js"></script>
+        <script
+            src="/renderfile/13470ef00a00016b01b21ae2afe15b78/_files/_redesign/prism/prism.js"
+            type="text/javascript"></script>
+        <script
+            src="https://customer.cludo.com/scripts/bundles/search-script.min.js"
+            type="text/javascript"></script>
+        <script>
+            var CludoSearch;
+            (function () {
+                var cludoSettings = {
+                    customerId: 10001479,
+                    engineId: 10002755,
+                    searchUrl:
+                        "/entity/open.act?type=page&amp;id=6865d6130a894fa553437b76f77e8913&amp;confId=a6df6eccc0a8002b3ae3e8d642eb35d4",
+                    language: "en",
+                    searchInputs: [
+                        "cludo-search-form",
+                        "cludo-search-form-top",
+                    ],
+                    hideSearchFilters: true,
+                    focusOnResultsAfterSearch: true,
+                    type: "inline",
+                    template: "InlineBasic",
+                    disableAutocomplete: true,
+                    <!--enableVoiceSearch: true-->
+                };
+                CludoSearch = new Cludo(cludoSettings);
+                CludoSearch.init();
+            })();
+        </script>
+        <!--Cludo Experiences-->
+        <script
+            data-cid="10001479"
+            defer="defer"
+            id="cludo-experience-manager"
+            src="https://customer.cludo.com/scripts/bundles/experiences/manager.js"></script>
+        <!--[if lte IE 9]>
+            <script
+                src="https://api.cludo.com/scripts/xdomain.js"
+                slave="https://api.cludo.com/proxy.html"
+                type="text/javascript"></script>
+        <![endif]-->
+
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"CUSTOM JS FOOT 2"}--><!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"ANALYTICS SPECTATE"}-->
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"ANALYTICS CLIVE"}-->
+        <script
+            async="true"
+            src="https://live.clive.cloud/page-views/track/12"></script>
+        <!--##HHILL_REGION_END-->
+        <!--##HHILL_REGION:{"name":"ANALYTICS - GOOGLE"}--><!--##HHILL_REGION_END-->
+        <script
+            charset="UTF-8"
+            src="/assets/js/regionInformation.js?v=304c5daa22b4e4a4d434976d5ffee92da0920c82"
+            type="text/javascript"></script>
+    </body>
+</html>

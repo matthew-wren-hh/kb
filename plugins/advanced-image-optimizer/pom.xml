@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cascade.plugin</groupId>
+    <artifactId>advanced-image-optimizer</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Advanced Image Optimizer Plugin</name>
+    <description>
+        Cascade CMS Asset Factory plugin providing advanced image optimization
+        with WebP support, configurable quality settings, and multiple output sizes.
+    </description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <thumbnailator.version>0.4.20</thumbnailator.version>
+        <imgscalr.version>4.2</imgscalr.version>
+        <webp-imageio.version>0.1.6</webp-imageio.version>
+        <twelvemonkeys.version>3.12.0</twelvemonkeys.version>
+    </properties>
+
+    <repositories>
+        <!-- For Cascade CMS SDK if published to a repository -->
+        <repository>
+            <id>local-repo</id>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--
+            Cascade CMS SDK - provided at runtime by Cascade
+            Download from: https://github.com/hannonhill/Cascade-Server-Asset-Factory-Plugin-SDK
+            Install locally with: mvn install:install-file -Dfile=cascade-api.jar -DgroupId=com.hannonhill.cascade -DartifactId=cascade-api -Dversion=8.17 -Dpackaging=jar
+        -->
+        <dependency>
+            <groupId>com.hannonhill.cascade</groupId>
+            <artifactId>cascade-api</artifactId>
+            <version>8.17</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Thumbnailator for high-quality resizing and JPEG optimization -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${thumbnailator.version}</version>
+        </dependency>
+
+        <!-- imgscalr for additional high-quality scaling options -->
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>${imgscalr.version}</version>
+        </dependency>
+
+        <!-- WebP support - bundles native libs for cross-platform -->
+        <dependency>
+            <groupId>org.sejda.imageio</groupId>
+            <artifactId>webp-imageio</artifactId>
+            <version>${webp-imageio.version}</version>
+        </dependency>
+
+        <!-- TwelveMonkeys for extended format support and better JPEG handling -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>${twelvemonkeys.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-core</artifactId>
+            <version>${twelvemonkeys.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+
+            <!-- Shade plugin for fat JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+
+                            <!-- Handle ImageIO service provider files -->
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Plugin-Class>com.cascade.plugin.imageoptimizer.AdvancedImageOptimizerPlugin</Plugin-Class>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+
+                            <!-- Exclude signature files from signed JARs -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+
+                            <!-- Relocate packages to avoid conflicts with Cascade's dependencies -->
+                            <relocations>
+                                <relocation>
+                                    <pattern>net.coobird.thumbnailator</pattern>
+                                    <shadedPattern>com.cascade.plugin.shaded.thumbnailator</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.imgscalr</pattern>
+                                    <shadedPattern>com.cascade.plugin.shaded.imgscalr</shadedPattern>
+                                </relocation>
+                            </relocations>
+
+                            <!-- Exclude Cascade CMS provided dependencies -->
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.hannonhill.cascade:*</exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <!-- Include resource bundle for i18n -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>
