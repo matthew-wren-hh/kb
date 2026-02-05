@@ -1,3 +1,17 @@
+# OS files
 .DS_Store
 **/.DS_Store
+
+# Build tools
 config.codekit3
+
+# Raw exports and reference materials (large files not needed in version control)
+raw-articles/
+main-site/
+Asset Factory Plugins - Cascade CMS Knowledge Base_files/
+rest API_files/
+
+# Exported HTML files (keep markdown versions in docs/)
+CASCADE_MASTER_CHEATSHEET.html
+Asset Factory Plugins - Cascade CMS Knowledge Base.html
+rest API.htm
