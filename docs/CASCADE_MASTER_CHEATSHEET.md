@@ -5370,6 +5370,111 @@ A macro can call other macros and/or itself.
 
 ---
 
+## Velocity Performance Best Practices {#velocity-performance-best-practices}
+
+### Working with Choosers
+
+When working with choosers, save repeated `.asset` calls to a variable and then access that variable's methods directly. Failure to do so will result in multiple round trips to the database when only a single round trip is necessary.
+
+**Bad - Multiple database round trips:**
+```velocity
+#set ($image = $currentPage.getStructuredDataNode("image"))
+## one database round trip
+#set ($imageLink = $image.asset.link)
+## another database round trip
+#set ($imageFileSize = $image.asset.fileSize)
+## another database round trip
+#set ($imageWidth = $image.asset.dimensions.width)
+## another database round trip
+#set ($imageHeight = $image.asset.dimensions.height)
+```
+
+**Good - Single database round trip:**
+```velocity
+## one database round trip
+#set ($selectedImage = $currentPage.getStructuredDataNode("image").asset)
+#set ($imageLink = $selectedImage.link)
+#set ($imageFileSize = $selectedImage.fileSize)
+#set ($imageWidth = $selectedImage.dimensions.width)
+#set ($imageHeight = $selectedImage.dimensions.height)
+```
+
+### Query API Preloading
+
+When working with the Query API and accessing Structured Data or Dynamic Metadata fields for the queried assets, use the corresponding `preloadStructuredData()` and/or `preloadDynamicMetadata()` methods for a performance boost.
+
+#### Preloading Structured Data
+
+**Bad - Database round trip for each of 500 results:**
+```velocity
+#set ($events = $_.query().byContentType("event").execute())
+#foreach ($event in $events)
+  ## database round trip (x 500)
+  #set($start = $event.getStructuredDataNode("startDateTime").textValue)
+  #set($end = $event.getStructuredDataNode("endDateTime").textValue)
+  #set($details = $event.getStructuredDataNode("details").textValue)
+  #set($link = $event.getStructuredDataNode("additional").getChild("link").textValue)
+  ## additional logic here
+#end
+```
+
+**Good - Preload structured data upfront:**
+```velocity
+#set ($events = $_.query().byContentType("event").preloadStructuredData().execute())
+#foreach ($event in $events)
+  ## No additional round trips - data already in memory
+  #set($start = $event.getStructuredDataNode("startDateTime").textValue)
+  #set($end = $event.getStructuredDataNode("endDateTime").textValue)
+  ## additional logic here
+#end
+```
+
+#### Preloading Dynamic Metadata
+
+**Bad - Database round trip for each result:**
+```velocity
+#set ($events = $_.query().byContentType("event").execute())
+#foreach ($event in $events)
+  ## database round trip (x N)
+  #set($showInNavMenu = $event.metadata.getDynamicField("display-in-nav").value)
+  #set($alternateTitle = $event.metadata.getDynamicField("alternate title").value)
+#end
+```
+
+**Good - Preload dynamic metadata upfront:**
+```velocity
+#set ($events = $_.query().byContentType("event").preloadDynamicMetadata().execute())
+#foreach ($event in $events)
+  ## No additional round trips
+  #set($showInNavMenu = $event.metadata.getDynamicField("display-in-nav").value)
+  #set($alternateTitle = $event.metadata.getDynamicField("alternate title").value)
+#end
+```
+
+### Consolidating Format Imports
+
+`#import` directives in Formats require a round trip from the app to the database. Limit the number of `#import` directives to keep transformation times performant.
+
+**Bad - Multiple imports (3 database round trips):**
+```velocity
+## one database round trip
+#import ("_cms/formats/shared/macros/stripTags")
+## another database round trip
+#import ("_cms/formats/shared/macros/escapeAll")
+## another database round trip
+#import ("_cms/formats/shared/macros/makeAccessible")
+```
+
+**Good - Combine macros into a single Format:**
+```velocity
+## one database round trip
+#import ("_cms/formats/shared/macros/utility")
+```
+
+Combine macros from multiple Formats into fewer Formats so that fewer `#import` directives are needed.
+
+---
+
 ### Working with namespaces in Velocity
 
 Consider the sample snippet below:
