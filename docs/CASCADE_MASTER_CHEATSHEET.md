@@ -636,86 +636,348 @@ $page.name
 
 \#set ($students \= $\_.query().byContentType("Student Success Profile").hasMetadata("type","student").hasAnyStructuredDataValues("tags/tags", $tags).execute())
 
-## Date Tool {#date-tool}
+## Date Tool Essentials {#date-tool}
 
-### Turn a string into a date format
+The Date Tool lets you retrieve, parse, format, and compare date/time values in Velocity. It is especially useful when working with Unix timestamps in milliseconds (such as Index Block XML values), normalizing mixed time zones from feeds, or formatting human-readable dates for display.
 
-\#set ( $date \= "08-08-2013" )  
-\#set ( $dateFormat \= $\_DateTool.getDateFormat("MM-dd-yyyy", $\_DateTool.getLocale(), $\_DateTool.getTimeZone()) )  
-\#set ( $date \= $dateFormat.parse($date) )  
-[http://help.hannonhill.com/discussions/velocity-formats/5332-formatting-dates-using-datetool](http://help.hannonhill.com/discussions/velocity-formats/5332-formatting-dates-using-datetool)
+### getDate() vs toDate()
 
-\#set ( $dateFormat \= $\_DateTool.getDateFormat("EEE, d MMM y H:m:s z", $\_DateTool.getLocale(), $\_DateTool.getTimeZone()) )  
-\#set ( $date \= $dateFormat.parse($feed.getChild("pubDate").value) )  
-$\_DateTool.format('EEEE, MMMM d, y', $date)
+Use `.getDate()` when you already have a Unix timestamp in milliseconds (for example, from metadata like `$currentPage.metadata.startDate`) and need a Java Date for formatting or comparison. If you omit the argument, `getDate()` returns the current moment.
 
-**OR**  
-$\_DateTool.toDate('EE, d MMMM yyyy HH:mm:ss z', $date.value )
+If your input is a human-readable date string (like `03-21-2024`), use `.toDate()` instead. The pattern you pass must match the string exactly; if it does not, you will get `null` rather than a parsed date.
 
-### Turn a date format into a string
-
-\#set ($date \= $\_DateTool.getDate($date.value))  
-\#set ($dateFormat \= $\_DateTool.format('EEEE, MMMM d, Y h:mm a', $date))  
-“Thursday, January 2, 2016 12:42 PM”  
-[http://www.hannonhill.com/kb/Script-Formats/\#date-tool](http://www.hannonhill.com/kb/Script-Formats/#date-tool)
-
-### Get Current Date
-
-\#set ($originalDate \= $\_DateTool.getDate()) 
-
-### Get Current Year
-
-$\_DateTool.format("yyyy", $\_DateTool.getDate())
-
-### Use a different timezone
-
-\#set($utc \= $\_DateTool.getTimeZone().getTimeZone("UTC"))  
-\#set($dateFormat \= $\_DateTool.getDateFormat("MM-dd-yyyy", $\_DateTool.getLocale(), $utc))
-
-### Output a date with a different timezone
-
-\#set ($startDate  \= $performance.metadata.getDynamicField("performance-start-date").value)  
-\#set ($startDate  \= $\_DateTool.getDate($startDate))  
-$\_DateTool.format('EE, dd MMM yyyy HH:mm:ss z', $startDate, $\_DateTool.getLocale(), $\_DateTool.getTimeZone().getTimeZone("UTC"))
-
-### Date Formats
-
-| Day of Month | d: 1 | dd: 01 |
+| Method | Input | When to use |
 | :---- | :---- | :---- |
-| Day of Week | E: Mon | EEEE: Monday |
-| Name of Month | MMM: Jan | MMMM: January M: 01 |
-| Year | y: 2016 | yy or YY: 16 |
-| Hour (12H) | h: 1 | hh: 01 |
-| Hour (24H) | H: 18 | HH: 09 |
-| Minutes | m: 1 | mm: 01 |
-| Seconds | s: 1 | ss: 01 |
-| Milliseconds | S: 999 |  |
-| Time AM/PM | a: AM |  |
-| Time Zone | z: EST | zzzz: Eastern Standard Time |
-| Time Offset | Z: \-0500 |  |
+| `$_DateTool.getDate()` | Unix timestamp in milliseconds | Convert a numeric timestamp to a Date for formatting or comparison |
+| `$_DateTool.toDate()` | Formatted date string + pattern | Parse a human-readable date string into a Date |
 
-[https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)  
-[http://velocity.apache.org/tools/devel/javadoc/org/apache/velocity/tools/generic/ComparisonDateTool.html](http://velocity.apache.org/tools/devel/javadoc/org/apache/velocity/tools/generic/ComparisonDateTool.html)
+**Pitfall**: `getDate()` expects milliseconds. If you pass seconds, your date will land near 1970.
 
-## Difference Tool {#difference-tool}
+#### getDate examples
 
-\#set ($today \= $\_DateTool.getDate())  
-\#set ($end \= $\_DateTool.getDate($event.getStructuredDataNode(“ends”).textValue))  
-\#if ($\_DateTool.difference($today, $end).days \>= 0\)
+Many `$currentPage` properties already return Date objects, so you can format them directly without conversion:
 
-### Days of Week
+```velocity
+## These already return Date objects - no conversion needed
+$currentPage.lastPublishedOn    ## Date of last publish
+$currentPage.createdOn          ## Date asset was created
+$currentPage.lastModified       ## Date of last modification
 
-\#foreach ($date in $\_.locateBlock("test", "Pittsburgh Playhouse").getStructuredDataNodes("dateTime"))  
-    \#set ($start \= $\_DateTool.toCalendar($\_DateTool.getDate($date.getChild("start").textValue)))  
-    \#set ($end \= $\_DateTool.toCalendar($\_DateTool.toDate("MM-dd-yyyy", $date.getChild("end").textValue)))  
-    \#\# \#set ($end \= $start)  
-    \#set ($diff \= $\_DateTool.whenIs($start, $end).getDays() \+ 1\)  
-    $\_DateTool.format("MMMM d", $start) \- $\_DateTool.format("d, yyyy", $end)  
-    \#foreach ($d in \[0..$diff\])  
-        $\_DateTool.format("EEEE, MMMM d, yyyy 'at' hh:mm a", $start)  
-        $start.add(5, 1\)  
-    \#end  
-\#end
+## Get the current date/time
+$_DateTool.getDate()
+
+## Format the last published date for a byline
+Published $_DateTool.format("MMM d, yyyy", $currentPage.lastPublishedOn)
+## Output: Published Jan 15, 2026
+```
+
+#### toDate examples
+
+Use `toDate()` when you have a date as a string and need to parse it into a Date object:
+
+```velocity
+## Parse a date string - pattern must match the input format exactly
+#set ($dateString = "03-21-2024")
+#set ($date = $_DateTool.toDate("MM-dd-yyyy", $dateString))
+$_DateTool.format("MMMM d, yyyy", $date)
+## Output: March 21, 2024
+
+## ISO-style date format (common in feeds and APIs)
+#set ($shipDateString = "2024-07-05")
+#set ($shipDate = $_DateTool.toDate("yyyy-MM-dd", $shipDateString))
+$_DateTool.format("MMM d, yyyy", $shipDate)
+## Output: Jul 5, 2024
+
+## Date with time - useful for event timestamps
+#set ($stamp = "2024-07-05 14:30:00")
+#set ($stampDate = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+$_DateTool.format("EEEE, MMM d 'at' h:mma", $stampDate)
+## Output: Friday, Jul 5 at 2:30PM
+```
+
+#### Working with Index Blocks
+
+Processing dates from Index Block XML:
+
+```velocity
+## Index Block provides timestamps in milliseconds
+#foreach ($page in $_XPathTool.selectNodes($contentRoot, "//system-page"))
+  #set ($lastMod = $_XPathTool.selectSingleNode($page, "last-modified-on"))
+  #set ($lastModDate = $_DateTool.getDate($lastMod.value))
+
+  <li>
+    $_XPathTool.selectSingleNode($page, "title").value
+    - Updated $_DateTool.format("M/d/yy", $lastModDate)
+  </li>
+#end
+```
+
+#### Handling edge cases
+
+```velocity
+## Always check for null before formatting
+#set ($startMillis = $currentPage.metadata.startDate)
+#if ($startMillis && $startMillis > 0)
+  #set ($startDate = $_DateTool.getDate($startMillis))
+  $_DateTool.format("MMMM d, yyyy", $startDate)
+#else
+  Date not set
+#end
+
+## toDate returns null if pattern doesn't match input
+#set ($input = "March 15, 2024")
+#set ($wrongPattern = $_DateTool.toDate("MM-dd-yyyy", $input))  ## null
+#set ($rightPattern = $_DateTool.toDate("MMMM d, yyyy", $input)) ## works
+```
+
+### Using difference()
+
+`difference()` returns a **Comparison** object that describes the distance between two dates. When printed, it renders a human-readable value (like `5 months`), and it also includes structured fields like `days`, `months`, `relative`, and `full`.
+
+```velocity
+## Get today's date
+#set ($today = $_DateTool.getDate())
+
+## Parse a target date - pattern must match the input format
+#set ($manualDate = "07-04-26")
+#set ($targetDate = $_DateTool.toDate("MM-dd-yy", $manualDate))
+
+## Compare today to the target date
+#set ($difference = $_DateTool.difference($today, $targetDate))
+
+$today       ## Wed Jan 14 14:36:28 EST 2026
+$targetDate  ## Sat Jul 04 00:00:00 EDT 2026
+$difference  ## 5 months
+```
+
+#### Useful fields on the Comparison object
+
+```velocity
+$difference.abbr         ## 5 mos
+$difference.difference   ## 5 months
+$difference.relative     ## 5 months later
+$difference.full         ## 5 months 2 weeks 6 days 8 hours 23 minutes ...
+
+$difference.days         ## 170
+$difference.weeks        ## 24
+$difference.months       ## 5
+$difference.years        ## 0
+```
+
+#### Branching UI label: "Still coming up" vs "Happened"
+
+```velocity
+#set ($today = $_DateTool.getDate())
+#set ($manualDate = "07-04-26")
+#set ($targetDate = $_DateTool.toDate("MM-dd-yy", $manualDate))
+#set ($difference = $_DateTool.difference($today, $targetDate))
+
+#if ($difference.days >= 0)
+  Still coming up (in $difference.abbr)
+#else
+  Happened ($difference.abbr ago)
+#end
+```
+
+### whenIs() basics
+
+`whenIs()` answers the more human question: "When is A relative to B?" It also returns a **Comparison** object, but the output is naturally directional (`earlier / later`), which is great for client-facing labels.
+
+```velocity
+## today is January 13, 2026 in this example
+#set ($today = $_DateTool.getDate())
+#set ($whenIs = $_DateTool.whenIs($today))
+$whenIs
+## now
+
+## Comparing two dates (argument order matters - swapping flips earlier vs later)
+#set ($manualDate = "July 4, 2026")
+#set ($targetDate = $_DateTool.toDate("MMMM dd, yyyy", $manualDate))
+
+## Target compared to today
+#set ($whenIsA = $_DateTool.whenIs($targetDate, $today))
+$whenIsA   ## 5 months earlier
+
+## Today compared to target
+#set ($whenIsB = $_DateTool.whenIs($today, $targetDate))
+$whenIsB   ## 5 months later
+```
+
+### getCalendar() basics
+
+`getCalendar()` returns a Java `Calendar` object representing the current date and time in Cascade's configured time zone. Use it when you need to read specific parts of "now" (year, month, day, weekday, hour) as numeric values for logic.
+
+```velocity
+#set ($cal = $_DateTool.getCalendar())
+
+$cal.get(1)  ## YEAR - Example: 2026
+$cal.get(2)  ## MONTH (zero-based: January = 0)
+$cal.get(5)  ## DAY_OF_MONTH (1-31)
+$cal.get(7)  ## DAY_OF_WEEK (Sunday = 1 ... Saturday = 7)
+$cal.get(11) ## HOUR_OF_DAY (0-23)
+```
+
+| Field ID | Meaning | Notes |
+| :---- | :---- | :---- |
+| `1` | YEAR | 4-digit year |
+| `2` | MONTH | Zero-based: January = `0` |
+| `5` | DAY_OF_MONTH | 1–31 |
+| `6` | DAY_OF_YEAR | 1–365/366 |
+| `7` | DAY_OF_WEEK | Sunday = `1`, Saturday = `7` |
+| `9` | AM_PM | `0` = AM, `1` = PM |
+| `11` | HOUR_OF_DAY | 24-hour clock (0–23) |
+| `12` | MINUTE | 0–59 |
+
+### Formatting output
+
+Keep your output consistent by reusing a small set of format strings:
+
+```velocity
+#set ($stamp = "2024-08-21 13:45:00")
+#set ($date = $_DateTool.toDate("yyyy-MM-dd HH:mm:ss", $stamp))
+
+$_DateTool.format("MMMM d, yyyy", $date)
+## August 21, 2024
+
+$_DateTool.format("EEE, MMM d 'at' h:mma", $date)
+## Wed, Aug 21 at 1:45PM
+
+$_DateTool.format("yyyy-MM-dd'T'HH:mm:ssXXX", $date, $_DateTool.getTimeZone("America/Chicago"))
+## 2024-08-21T13:45:00-05:00
+
+$_DateTool.format("'Week' w, yyyy", $date)
+## Week 34, 2024
+```
+
+#### Date Format Symbols
+
+| Symbol | Meaning | Variations |
+| :---- | :---- | :---- |
+| `y` | Year | y=2024, yy=24, yyyy=2024 |
+| `M` | Month (1-12) | M=8, MM=08, MMM=Aug, MMMM=August |
+| `d` | Day of month | d=5, dd=05 |
+| `E` | Day name | E=Wed, EEE=Wed, EEEE=Wednesday |
+| `H` | Hour 0-23 | H=9, HH=09 |
+| `h` | Hour 1-12 | h=9, hh=09 |
+| `m` | Minute | m=3, mm=03 |
+| `s` | Second | s=7, ss=07 |
+| `a` | AM/PM marker | a=AM |
+| `z` | Time zone abbreviation | z=EDT, zzzz=Eastern Daylight Time |
+| `X` | ISO 8601 offset | X=-5, XX=-0500, XXX=-05:00 |
+| `w` | Week of year | w=34, ww=34 |
+
+### Handling time zones
+
+Feeds frequently include timestamps paired with separate time zone identifiers. If you format those dates using your server's default time zone, event times can appear hours off.
+
+#### Cloud approach (simple)
+
+```velocity
+#set ($startDate = $currentPage.createdOn)
+
+## Default server time zone
+$_DateTool.format('EE MMM dd HH:mm:ss z yyyy', $startDate)
+## Output: Wed Aug 21 14:08:26 EDT 2019
+
+## Converted to UTC
+$_DateTool.format('EE MMM dd HH:mm:ss z yyyy', $startDate, $_DateTool.getLocale(), $_DateTool.getTimeZone().getTimeZone("UTC"))
+## Output: Wed Aug 21 18:08:26 UTC 2019
+
+## Converted to Pacific time
+$_DateTool.format('EE MMM dd HH:mm:ss z yyyy', $startDate, $_DateTool.getLocale(), $_DateTool.getTimeZone().getTimeZone("America/Los_Angeles"))
+## Output: Wed Aug 21 11:08:26 PDT 2019
+```
+
+#### On-premises workaround (reflection)
+
+Some on-premises instances block the nested `.getTimeZone()` call. Use Java reflection as a workaround:
+
+```velocity
+## Get the TimeZone class via reflection
+#set ($tzClass = $_DateTool.getTimeZone().getClass().forName("java.util.TimeZone"))
+
+## Create a TimeZone object for UTC
+#set ($utcTz = $tzClass.getMethod("getTimeZone", $tzClass.forName("java.lang.String")).invoke(null, "UTC"))
+
+## Format a date in UTC
+$_DateTool.format('EE MMM dd HH:mm:ss z yyyy', $currentPage.createdOn, $_DateTool.getLocale(), $utcTz)
+## Output: Wed Aug 21 18:08:26 UTC 2019
+```
+
+#### Processing feeds with mixed time zones
+
+```velocity
+## Set up the TimeZone class reference once
+#set ($tzClass = $_DateTool.getTimeZone().getClass().forName("java.util.TimeZone"))
+
+#foreach ($event in $events)
+  ## Get the TimeZone for this event
+  #set ($eventTz = $tzClass.getMethod("getTimeZone", $tzClass.forName("java.lang.String")).invoke(null, $event.timezone))
+
+  ## Parse the date string
+  #set ($parser = $_DateTool.getDateFormat("yyyy-MM-dd HH:mm:ss", $_DateTool.getLocale(), $eventTz))
+  #set ($startDate = $parser.parse($event.start))
+
+  ## Format with the event's time zone
+  $_DateTool.format("MMM d, yyyy 'at' h:mma z", $startDate, $_DateTool.getLocale(), $eventTz)
+  ## Example output: Aug 21, 2024 at 1:00PM CDT
+#end
+```
+
+### Sorting by date
+
+#### Index Block sorting
+
+Configure sorting directly in the Index Block asset under its settings. You can sort by system properties like **Last Modified Date**, **Created Date**, or **Start Date**.
+
+#### Sorting with $_.query()
+
+```velocity
+## Query articles sorted by last modified date (newest first)
+#set ($results = $_.query().byContentType("Article").sortBy("modified").sortDirection("desc").execute())
+
+#foreach ($page in $results)
+  $page.name - $_DateTool.format("MMM d, yyyy", $page.lastModified)
+#end
+
+## Sort events by start date (ascending)
+#set ($events = $_.query().byContentType("Event").sortBy("startDate").sortDirection("asc").execute())
+```
+
+Available date fields for `sortBy()`: `created`, `modified`, `startDate`, `endDate`, and `reviewDate`.
+
+#### Sorting with $_SortTool
+
+```velocity
+## Sort a list of pages by lastModified (ascending)
+#set ($sorted = $_SortTool.sort($pages, "lastModified"))
+
+## Sort descending (newest first)
+#set ($sorted = $_SortTool.sort($pages, "lastModified:desc"))
+
+## Sort by a metadata date field
+#set ($sorted = $_SortTool.sort($pages, "metadata.startDate:desc"))
+```
+
+#### Sorting with XPath
+
+```velocity
+## Sort pages by last-modified-on, newest first
+#set ($pages = $_XPathTool.selectNodes(
+  $contentRoot,
+  "//system-page[sort-by(last-modified-on, 'number', 'descending')]"
+))
+
+#foreach ($page in $pages)
+  #set ($lastMod = $_XPathTool.selectSingleNode($page, "last-modified-on").value)
+  #set ($date = $_DateTool.getDate($lastMod))
+  $_DateTool.format("MMM d, yyyy", $date)
+#end
+```
+
+**References:**
+- [SimpleDateFormat JavaDoc](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)
+- [ComparisonDateTool JavaDoc](http://velocity.apache.org/tools/devel/javadoc/org/apache/velocity/tools/generic/ComparisonDateTool.html)
 
 # RSS Feeds {#rss-feeds}
 
